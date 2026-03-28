@@ -1,0 +1,4 @@
+node_modules/
+*.pdf
+IMG_*.jpg
+clinic-page.html
