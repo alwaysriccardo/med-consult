@@ -72,12 +72,25 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="bg-white rounded-2xl shadow-2xl shadow-navy-900/15 p-10 max-w-sm w-full mx-4 text-center">
 <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-navy-50 flex items-center justify-center"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-6 h-6 text-navy-900"></i></div>
 <h2 class="font-display text-xl text-navy-900 mb-1">MedConsult</h2>
-<p class="text-slate-400 text-sm mb-8">Selectați limba / Выберите язык / Choose language</p>
+<p class="text-slate-400 text-sm mb-8">Selectați limba / Выберите язык</p>
 <div class="space-y-3">
 <button onclick="pickLang('ro')" class="w-full py-3.5 bg-navy-50 hover:bg-navy-900 hover:text-white text-navy-900 rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Română</button>
 <button onclick="pickLang('ru')" class="w-full py-3.5 bg-navy-50 hover:bg-navy-900 hover:text-white text-navy-900 rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Русский</button>
-<button onclick="pickLang('en')" class="w-full py-3.5 bg-navy-50 hover:bg-navy-900 hover:text-white text-navy-900 rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">English</button>
 </div>
+</div>
+</div>
+
+<!-- ABOUT MODAL -->
+<div id="aboutModal" class="popup-overlay hide" onclick="if(event.target===this)closeAbout()">
+<div class="bg-white rounded-2xl shadow-2xl shadow-navy-900/20 max-w-2xl w-full mx-4 my-8 max-h-[85vh] flex flex-col">
+<div class="flex items-center justify-between px-8 py-5 border-b border-slate-100 flex-shrink-0">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-sky-600 flex items-center justify-center text-white"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-5 h-5"></i></div>
+<span class="font-display text-navy-900 text-xl">MedConsult</span>
+</div>
+<button onclick="closeAbout()" aria-label="Close" class="text-slate-400 hover:text-navy-900 cursor-pointer transition-colors"><i data-lucide="x" stroke-width="1.5" class="w-6 h-6"></i></button>
+</div>
+<div class="overflow-y-auto px-8 py-6 text-slate-500 text-[15px] leading-relaxed font-light" data-i18n="about_modal_html"></div>
 </div>
 </div>
 
@@ -122,7 +135,6 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="flex gap-0.5 border border-slate-200 rounded-lg p-0.5">
 <button onclick="setLang('ro')" class="lb active px-2 py-1 text-[10px] uppercase tracking-widest rounded-md transition-all font-bold cursor-pointer">RO</button>
 <button onclick="setLang('ru')" class="lb px-2 py-1 text-[10px] uppercase tracking-widest text-slate-400 rounded-md transition-all font-bold cursor-pointer">RU</button>
-<button onclick="setLang('en')" class="lb px-2 py-1 text-[10px] uppercase tracking-widest text-slate-400 rounded-md transition-all font-bold cursor-pointer">EN</button>
 </div>
 </div>
 <button id="mobBtn" class="lg:hidden text-navy-900 cursor-pointer"><i data-lucide="menu" stroke-width="1.5" class="w-6 h-6"></i></button>
@@ -136,7 +148,6 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="flex gap-0.5 border border-slate-200 rounded-lg p-0.5 w-fit mt-2">
 <button onclick="setLang('ro')" class="lb active px-3 py-1.5 text-xs uppercase tracking-widest rounded-md cursor-pointer">RO</button>
 <button onclick="setLang('ru')" class="lb px-3 py-1.5 text-xs uppercase tracking-widest text-slate-400 rounded-md cursor-pointer">RU</button>
-<button onclick="setLang('en')" class="lb px-3 py-1.5 text-xs uppercase tracking-widest text-slate-400 rounded-md cursor-pointer">EN</button>
 </div>
 </div>
 </nav>
@@ -158,12 +169,13 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <span class="text-xs font-medium text-white/60 uppercase tracking-[.2em]" data-i18n="hero_badge">Chișinău, Republica Moldova</span>
 </div>
 <h1 data-a data-d="1" class="text-4xl md:text-5xl lg:text-[3.4rem] font-display tracking-tight leading-[1.15] text-white mb-8">
-<span data-i18n="hero_title">Imunoterapie Oncologică<br><em class="text-sky-500 not-italic">de Nivel European.</em></span>
+<span data-i18n="hero_title">MedConsult</span>
 </h1>
-<p data-a data-d="2" class="text-lg md:text-xl text-white/50 font-light leading-relaxed mb-10 max-w-lg" data-i18n="hero_sub">Centru de consultanță oncologică și imunoterapie TIL în Chișinău — tratamente moderne împotriva cancerului, cu acces la tehnologii de nivel european.</p>
+<p data-a data-d="2" class="text-lg md:text-xl text-white/50 font-light leading-relaxed mb-10 max-w-lg" data-i18n="hero_sub">MedConsult este reprezentantul serviciilor medicale în cele mai bune clinici din lume. Diagnostic, tratament, imunoterapie și cele mai noi tehnologii de vaccinare în bolile oncologice.</p>
 <div data-a data-d="3" class="flex flex-col sm:flex-row gap-4">
-<a href="#til" class="px-8 py-4 bg-sky-500 text-white text-sm font-medium uppercase tracking-[.15em] rounded-xl shadow-lg shadow-sky-500/25 hover:shadow-xl hover:bg-sky-400 transition-all text-center" data-i18n="hero_cta1">Află Despre Terapia TIL</a>
+<a href="javascript:void(0)" onclick="openAbout()" class="px-8 py-4 bg-sky-500 text-white text-sm font-medium uppercase tracking-[.15em] rounded-xl shadow-lg shadow-sky-500/25 hover:shadow-xl hover:bg-sky-400 transition-all text-center cursor-pointer" data-i18n="hero_cta1">Despre Noi</a>
 <a href="#contact" class="px-8 py-4 border border-white/25 text-white/70 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta2">Contactează-ne</a>
+<a href="#til-highlight" class="px-8 py-4 border border-white/25 text-white/70 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta3">Terapia TIL</a>
 </div>
 </div>
 <div id="heroHelix" class="hidden lg:block relative" style="height:620px">
@@ -182,60 +194,12 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <!-- ABOUT -->
 <section id="about" class="layer-section py-24 md:py-32 bg-white relative z-10 rounded-t-3xl -mt-8">
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-<div class="lg:grid lg:grid-cols-2 lg:gap-20 lg:items-center">
 <div>
 <div data-a>
 <span class="text-sky-500 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="about_label">Despre MedConsult</span>
-<h2 class="text-3xl md:text-4xl font-display text-navy-900 tracking-tight leading-tight mb-6" data-i18n="about_title">Consultanță Oncologică Profesională</h2>
+<h2 class="text-3xl md:text-4xl font-display text-navy-900 tracking-tight leading-tight mb-6" data-i18n="about_title">Cum Lucrăm</h2>
 </div>
-<div data-a data-d="1" class="space-y-5 text-slate-500 font-light text-[17px] leading-relaxed">
-<p data-i18n="about_p1">MedConsult este un centru de consultanță oncologică cu sediul în Chișinău, specializat în imunoterapia TIL (Tumor Infiltrating Lymphocyte) — una dintre cele mai promițătoare metode moderne de tratament al cancerului. Clinica noastră oferă consultații, evaluări medicale și coordonarea tratamentului direct în Chișinău.</p>
-<p data-i18n="about_p2">Sediul nostru este localizat direct în cadrul infrastructurii medicale din Chișinău, ceea ce permite accesul imediat la resurse medicale și rezolvarea operativă a oricăror probleme ale pacienților. Pentru cazurile care necesită infrastructură suplimentară, colaborăm și cu clinici partenere din Europa.</p>
-<p data-i18n="about_p3">Principiile noastre fundamentale: profesionalism bazat pe ani de experiență, abordare personalizată a fiecărui pacient, și contact direct cu echipa medicală pe tot parcursul tratamentului.</p>
-</div>
-</div>
-<div data-a="r" data-d="2" class="hidden lg:grid grid-cols-2 gap-5">
-<!-- Desktop: cards. Mobile: horizontal rows -->
-<div class="bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-slate-100 card-hover hidden sm:block">
-<i data-lucide="map-pin" stroke-width="1.5" class="w-7 h-7 text-sky-500 mb-4"></i>
-<h4 class="font-display text-navy-900 text-lg mb-2" data-i18n="about_c1_title">Locație</h4>
-<p class="text-slate-400 text-sm font-light leading-relaxed">Bd. Ștefan cel Mare<br>Chișinău, Moldova</p>
-</div>
-<div class="bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-slate-100 card-hover hidden sm:block">
-<i data-lucide="globe" stroke-width="1.5" class="w-7 h-7 text-sky-500 mb-4"></i>
-<h4 class="font-display text-navy-900 text-lg mb-2" data-i18n="about_c2_title">Clinici în Europa</h4>
-<p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c2_text">Parteneriate cu clinici multidisciplinare din Europa.</p>
-</div>
-<div class="bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-slate-100 card-hover hidden sm:block">
-<i data-lucide="users" stroke-width="1.5" class="w-7 h-7 text-sky-500 mb-4"></i>
-<h4 class="font-display text-navy-900 text-lg mb-2" data-i18n="about_c3_title">Consiliu Medical</h4>
-<p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c3_text">Fiecare caz este analizat de un consiliu de specialiști.</p>
-</div>
-<div class="bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-slate-100 card-hover hidden sm:block">
-<i data-lucide="languages" stroke-width="1.5" class="w-7 h-7 text-sky-500 mb-4"></i>
-<h4 class="font-display text-navy-900 text-lg mb-2" data-i18n="about_c4_title">Multilingv</h4>
-<p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c4_text">Comunicare în română, rusă și engleză.</p>
-</div>
-</div>
-<!-- Mobile horizontal rows -->
-<div class="lg:hidden space-y-0 divide-y divide-slate-100">
-<div class="flex items-start gap-4 py-5">
-<div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="map-pin" stroke-width="1.5" class="w-5 h-5 text-sky-500"></i></div>
-<div><h4 class="font-display text-navy-900 text-base mb-1" data-i18n="about_c1_title">Locație</h4><p class="text-slate-400 text-sm font-light leading-relaxed">Bd. Ștefan cel Mare, Chișinău, Moldova</p></div>
-</div>
-<div class="flex items-start gap-4 py-5">
-<div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="globe" stroke-width="1.5" class="w-5 h-5 text-sky-500"></i></div>
-<div><h4 class="font-display text-navy-900 text-base mb-1" data-i18n="about_c2_title">Clinici în Europa</h4><p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c2_text">Parteneriate cu clinici multidisciplinare din Europa.</p></div>
-</div>
-<div class="flex items-start gap-4 py-5">
-<div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="users" stroke-width="1.5" class="w-5 h-5 text-sky-500"></i></div>
-<div><h4 class="font-display text-navy-900 text-base mb-1" data-i18n="about_c3_title">Consiliu Medical</h4><p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c3_text">Fiecare caz este analizat de un consiliu de specialiști.</p></div>
-</div>
-<div class="flex items-start gap-4 py-5">
-<div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="languages" stroke-width="1.5" class="w-5 h-5 text-sky-500"></i></div>
-<div><h4 class="font-display text-navy-900 text-base mb-1" data-i18n="about_c4_title">Multilingv</h4><p class="text-slate-400 text-sm font-light leading-relaxed" data-i18n="about_c4_text">Comunicare în română, rusă și engleză.</p></div>
-</div>
-</div>
+<div data-a data-d="1" class="text-slate-500 font-light text-[17px] leading-relaxed" data-i18n="about_html"></div>
 </div>
 </div>
 </section>
@@ -245,6 +209,9 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <section id="til" class="layer-section py-24 md:py-32 bg-white relative z-20 rounded-t-3xl -mt-6 overflow-hidden">
 <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-50/40 rounded-full blur-3xl -z-10"></div>
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+<!-- Highlight line -->
+<p id="til-highlight" data-a class="text-center max-w-3xl mx-auto mb-10 italic font-bold text-xl md:text-2xl text-navy-900 leading-relaxed scroll-mt-32" data-i18n="til_highlight">Astăzi, una dintre cele mai promițătoare metode moderne de tratament al cancerului este imunoterapia TIL (Tumor Infiltrating Lymphocyte).</p>
 
 <!-- Intro -->
 <div data-a class="text-center max-w-3xl mx-auto mb-20">
@@ -275,68 +242,14 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 </div>
 </div>
 
-<!-- Block 2: How it works - step by step -->
-<div data-a class="mb-20">
-<div class="text-center max-w-2xl mx-auto mb-12">
-<h3 class="text-2xl md:text-3xl font-display text-navy-900 tracking-tight mb-4" data-i18n="til_process_title">Procesul de Tratament — Pas cu Pas</h3>
-<p class="text-slate-400 font-light text-lg" data-i18n="til_process_sub">Întregul proces de pregătire durează aproximativ o lună, de la extragerea limfocitelor până la administrarea lor.</p>
-</div>
-<!-- Glass cards panel -->
-<div class="relative bg-gradient-to-br from-[#0a1628] via-[#0d1f45] to-[#08101e] rounded-3xl p-5 md:p-7 overflow-hidden">
-<!-- Ambient glow blobs -->
-<div class="absolute -top-12 left-1/4 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute -bottom-12 right-1/4 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl pointer-events-none"></div>
-<div id="stepTrack" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-1 md:grid md:grid-cols-2 md:overflow-x-visible md:pb-0 relative" style="scrollbar-width:none;-webkit-overflow-scrolling:touch">
-<!-- Card 1 — blue -->
-<div data-a data-d="1" class="snap-start flex-none w-[82vw] md:w-auto group relative bg-white/[0.04] border border-white/[0.07] rounded-2xl p-8 text-white overflow-hidden transition-all duration-300 hover:bg-white/[0.07] hover:border-sky-400/25 hover:shadow-xl hover:shadow-sky-500/10">
-<div class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-sky-400/90 via-sky-400/25 to-transparent"></div>
-<div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold mb-5 bg-sky-500/15 text-sky-300 border border-sky-400/25 shadow-lg shadow-sky-500/20">1</div>
-<h4 class="font-display text-lg mb-3" data-i18n="til_p1_title">Rezecția Tumorii sau Biopsia</h4>
-<p class="text-white/55 font-light leading-relaxed text-[15px]" data-i18n="til_p1_text">Tratamentul începe după o intervenție chirurgicală de îndepărtare a tumorii sau după o biopsie. Țesutul tumoral prelevat este imediat crioconservat (înghețat) folosind echipament special, pentru a păstra limfocitele viabile. Identificarea precisă a zonei tumorale necesită echipament de vizualizare de ultimă generație.</p>
-</div>
-<!-- Card 2 — purple -->
-<div data-a data-d="2" class="snap-start flex-none w-[82vw] md:w-auto group relative bg-white/[0.04] border border-white/[0.07] rounded-2xl p-8 text-white overflow-hidden transition-all duration-300 hover:bg-white/[0.07] hover:border-violet-400/25 hover:shadow-xl hover:shadow-violet-500/10">
-<div class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-violet-400/90 via-violet-400/25 to-transparent"></div>
-<div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold mb-5 bg-violet-500/15 text-violet-300 border border-violet-400/25 shadow-lg shadow-violet-500/20">2</div>
-<h4 class="font-display text-lg mb-3" data-i18n="til_p2_title">Separarea și Ingineria Genetică</h4>
-<p class="text-white/55 font-light leading-relaxed text-[15px]" data-i18n="til_p2_text">În laboratorul specializat, limfocitele sunt separate de celulele tumorale. Apoi sunt procesate prin inginerie genetică avansată pentru a deveni rezistente la semnalele pe care tumora le folosește pentru a „dezactiva" sistemul imunitar. Acest pas este crucial pentru eficacitatea tratamentului.</p>
-</div>
-<!-- Card 3 — blue -->
-<div data-a data-d="3" class="snap-start flex-none w-[82vw] md:w-auto group relative bg-white/[0.04] border border-white/[0.07] rounded-2xl p-8 text-white overflow-hidden transition-all duration-300 hover:bg-white/[0.07] hover:border-sky-400/25 hover:shadow-xl hover:shadow-sky-500/10">
-<div class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-sky-400/90 via-sky-400/25 to-transparent"></div>
-<div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold mb-5 bg-sky-500/15 text-sky-300 border border-sky-400/25 shadow-lg shadow-sky-500/20">3</div>
-<h4 class="font-display text-lg mb-3" data-i18n="til_p3_title">Multiplicarea Limfocitelor</h4>
-<p class="text-white/55 font-light leading-relaxed text-[15px]" data-i18n="til_p3_text">Limfocitele perfecționate sunt multiplicate în laborator până la cantități terapeutice — de la câteva mii la miliarde de celule. Acest proces de cultivare necesită echipament de laborator modern și durează aproximativ 2-4 săptămâni. Este realizat doar în câteva clinici specializate din lume.</p>
-</div>
-<!-- Card 4 — purple -->
-<div data-a data-d="4" class="snap-start flex-none w-[82vw] md:w-auto group relative bg-white/[0.04] border border-white/[0.07] rounded-2xl p-8 text-white overflow-hidden transition-all duration-300 hover:bg-white/[0.07] hover:border-violet-400/25 hover:shadow-xl hover:shadow-violet-500/10">
-<div class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-violet-400/90 via-violet-400/25 to-transparent"></div>
-<div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold mb-5 bg-violet-500/15 text-violet-300 border border-violet-400/25 shadow-lg shadow-violet-500/20">4</div>
-<h4 class="font-display text-lg mb-3" data-i18n="til_p4_title">Administrarea Tratamentului</h4>
-<p class="text-white/55 font-light leading-relaxed text-[15px]" data-i18n="til_p4_text">Pacientul primește un scurt curs de chimioterapie pregătitoare (limfodepletivă), care pregătește organismul pentru noile celule. Apoi limfocitele sunt administrate intravenos, similar unei transfuzii de sânge. Aceste celule încep imediat să caute și să distrugă celulele canceroase în tot corpul.</p>
-</div>
-</div>
-<!-- Swipe indicator — mobile only -->
-<div class="flex md:hidden flex-col items-center gap-3 mt-5">
-<div id="stepDots" class="flex items-center gap-1.5">
-<div class="h-1.5 rounded-full bg-sky-400 transition-all duration-300 w-4"></div>
-<div class="h-1.5 rounded-full bg-white/20 transition-all duration-300 w-1.5"></div>
-<div class="h-1.5 rounded-full bg-white/20 transition-all duration-300 w-1.5"></div>
-<div class="h-1.5 rounded-full bg-white/20 transition-all duration-300 w-1.5"></div>
-</div>
-<p id="swipeHint" class="text-white/30 text-[11px] tracking-widest uppercase flex items-center gap-1.5 transition-opacity duration-500"><i data-lucide="move-horizontal" stroke-width="1.5" class="w-3.5 h-3.5"></i> Swipe</p>
-</div>
-</div>
-</div>
-
 <!-- Medical Diagrams -->
 <div class="grid lg:grid-cols-2 gap-8 mb-20">
 <div data-a="s" class="rounded-2xl overflow-hidden border border-slate-100 shadow-lg shadow-slate-200/40">
-<img src="images/treatment-concept.jpg" alt="Treatment Concept — Conceptul de Tratament TIL" class="w-full" loading="lazy">
+<img src="images/concept-of-treatment-ro.png" data-img-ro="images/concept-of-treatment-ro.png" data-img-ru="images/concept-of-treatment-ru.png" alt="Treatment Concept — Conceptul de Tratament TIL" class="w-full" loading="lazy">
 <div class="px-6 py-5 bg-white border-t border-slate-50"><p class="text-sm text-slate-500 font-light leading-relaxed" data-i18n="til_img1_cap">Schema conceptuală a tratamentului cu limfocite infiltrante ale tumorii</p></div>
 </div>
 <div data-a="s" data-d="1" class="rounded-2xl overflow-hidden border border-slate-100 shadow-lg shadow-slate-200/40">
-<img src="images/mechanism-of-action.jpg" alt="Mechanism of Action — Mecanismul de Acțiune TIL" class="w-full" loading="lazy">
+<img src="images/mechanism-of-action-ro.png" data-img-ro="images/mechanism-of-action-ro.png" data-img-ru="images/mechanism-of-action-ru.png" alt="Mechanism of Action — Mecanismul de Acțiune TIL" class="w-full" loading="lazy">
 <div class="px-6 py-5 bg-white border-t border-slate-50"><p class="text-sm text-slate-500 font-light leading-relaxed" data-i18n="til_img2_cap">Mecanismul de acțiune al imunoterapiei cu celule TIL</p></div>
 </div>
 </div>
@@ -348,7 +261,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="w-11 h-11 rounded-xl bg-emerald-100 flex items-center justify-center"><i data-lucide="shield-check" stroke-width="1.5" class="w-6 h-6 text-emerald-600"></i></div>
 <h3 class="font-display text-xl text-navy-900" data-i18n="til_types_title">Ce Tipuri de Cancer Tratează?</h3>
 </div>
-<div class="text-slate-500 font-light leading-relaxed space-y-4 text-[15px]" data-i18n="til_types_text"><p>TIL-terapia poate fi aplicată pentru orice tip de cancer. Această metodă inovatoare utilizează propriile celule imunitare ale pacientului, ceea ce o face adaptabilă la diverse forme de neoplasme maligne, indiferent de localizarea sau stadiul bolii.</p><p>Consiliul de medici studiază în detaliu dosarul medical al fiecărui pacient și decide individual dacă acesta este eligibil pentru tratamentul TIL. Evaluarea include analiza tipului de cancer, stadiul bolii, starea generală de sănătate și tratamentele anterioare.</p></div>
+<div class="text-slate-500 font-light leading-relaxed space-y-4 text-[15px]" data-i18n="til_types_text"><p>TIL-terapia poate fi aplicată pentru multe tipuri de cancer. Această metodă inovatoare utilizează propriile celule imunitare ale pacientului, ceea ce o face adaptabilă la diverse forme de neoplasme maligne.</p><p>Consiliul de medici studiază în detaliu dosarul medical al fiecărui pacient și decide individual dacă acesta este eligibil pentru tratamentul TIL. Evaluarea include analiza tipului de cancer, stadiul bolii, starea generală de sănătate și tratamentele anterioare.</p></div>
 </div>
 <div data-a data-d="1" class="bg-gradient-to-br from-amber-50/60 to-white rounded-2xl p-10 border border-amber-100/50">
 <div class="flex items-center gap-3 mb-5">
@@ -365,7 +278,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <h3 class="font-display text-2xl md:text-3xl text-white tracking-tight mb-6" data-i18n="til_tech_title">Provocările Tehnologice ale TIL-Terapiei</h3>
 <div class="text-white/60 font-light leading-relaxed space-y-5 text-[15px]" data-i18n="til_tech_text">
 <p>Obținerea celulelor TIL este un proces tehnologic extrem de complex, realizat doar în câteva clinici specializate din lume. Aceasta este una dintre cele mai avansate forme de medicină personalizată disponibile astăzi.</p>
-<p>Principalele provocări tehnice includ: identificarea cu precizie maximă a zonei tumorale pentru rezecție, care necesită echipament de vizualizare de ultimă generație (PET-CT, RMN 3 Tesla); echipament de laborator modern și steril pentru izolarea, procesarea și multiplicarea limfocitelor; și echipament special de crioconservare pentru înghețarea imediată a țesutului tumoral după operație sau biopsie.</p>
+<p>Fiecare caz este analizat de un consiliu de specialiști.</p>
 <p>Din acest motiv, MedConsult colaborează cu clinici de vârf din Europa care dispun de toată infrastructura necesară — de la săli de operație echipate cu sistem de navigare de ultimă generație, până la laboratoare certificate pentru terapia celulară.</p>
 </div>
 </div>
@@ -441,7 +354,7 @@ YouTube
 <div data-a>
 <span class="text-sky-400 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="ct_label">Contact</span>
 <h2 class="text-3xl md:text-4xl font-display text-white tracking-tight mb-6" data-i18n="ct_title">Contactați-ne</h2>
-<p class="text-white/40 text-lg font-light mb-12 max-w-md leading-relaxed" data-i18n="ct_sub">Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română, rusă și engleză.</p>
+<p class="text-white/40 text-lg font-light mb-12 max-w-md leading-relaxed" data-i18n="ct_sub">Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română și rusă.</p>
 <ul class="space-y-6">
 <li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" stroke-width="1.5" class="text-sky-400 w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_loc_label">Locație</span><span class="text-white/40 font-light text-sm">Bd. Ștefan cel Mare, Chișinău, Republica Moldova</span></div></li>
 <li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" stroke-width="1.5" class="text-sky-400 w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_phone_label">Telefon / WhatsApp / Viber</span><a href="tel:+37362000452" class="text-white/40 font-light text-sm hover:text-sky-300 transition-colors">+373 62-000-452</a></div></li>
@@ -449,16 +362,11 @@ YouTube
 </ul>
 </div>
 <div data-a="r">
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-<h3 class="text-xl font-display text-white mb-6" data-i18n="ct_form_title">Solicită o Consultație</h3>
-<form class="space-y-4" onsubmit="event.preventDefault()">
-<div class="grid grid-cols-2 gap-4">
-<div><label class="block text-[10px] font-semibold uppercase tracking-widest text-sky-300/50 mb-1.5" data-i18n="f_name">Nume</label><input type="text" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-light focus:outline-none focus:border-sky-400/50 transition placeholder:text-white/15" placeholder="Numele dvs."></div>
-<div><label class="block text-[10px] font-semibold uppercase tracking-widest text-sky-300/50 mb-1.5" data-i18n="f_phone">Telefon</label><input type="tel" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-light focus:outline-none focus:border-sky-400/50 transition placeholder:text-white/15" placeholder="+373..."></div>
-</div>
-<div><label class="block text-[10px] font-semibold uppercase tracking-widest text-sky-300/50 mb-1.5" data-i18n="f_msg">Mesaj</label><textarea rows="4" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-light focus:outline-none focus:border-sky-400/50 transition resize-none placeholder:text-white/15" placeholder="Descrieți situația dvs. medicală..."></textarea></div>
-<button type="submit" class="w-full py-4 bg-sky-500 text-white text-sm font-semibold uppercase tracking-[.15em] rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/20 cursor-pointer" data-i18n="f_submit">Trimite Cererea</button>
-</form>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-10 text-center">
+<div class="w-14 h-14 rounded-2xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mx-auto mb-6"><i data-lucide="mail" stroke-width="1.5" class="w-7 h-7 text-sky-300"></i></div>
+<h3 class="text-2xl font-display text-white mb-3" data-i18n="ct_form_title">Solicită o Consultație</h3>
+<p class="text-white/40 font-light text-sm mb-8 leading-relaxed" data-i18n="ct_form_sub">Trimiteți-ne un email și vă vom contacta în cel mai scurt timp.</p>
+<a href="mailto:[email@medconsult.md]?subject=Solicitare%20Consultație" class="inline-flex items-center justify-center gap-2 w-full py-4 bg-sky-500 text-white text-sm font-semibold uppercase tracking-[.15em] rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/20" data-i18n="f_submit">Solicită Consultație <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
 </div>
 </div>
 </div>
@@ -506,40 +414,35 @@ ro:{
 nav_about:'Despre Noi',nav_til:'Terapia TIL',nav_services:'Servicii',nav_contact:'Contact',
 hero_badge:'Chișinău, Republica Moldova',
 nav_tagline:'Imunoterapie Oncologică',
-hero_title:'Imunoterapie Oncologică<br><em class="text-sky-500 not-italic">de Nivel European.</em>',
-hero_sub:'Centru de consultanță oncologică și imunoterapie TIL în Chișinău — tratamente moderne împotriva cancerului, cu acces la tehnologii de nivel european.',
-hero_cta1:'Află Despre Terapia TIL',hero_cta2:'Contactează-ne',
+hero_title:'MedConsult',
+hero_sub:'MedConsult este reprezentantul serviciilor medicale în cele mai bune clinici din lume. Diagnostic, tratament, imunoterapie și cele mai noi tehnologii de vaccinare în bolile oncologice.',
+hero_cta1:'Despre Noi',hero_cta2:'Contactează-ne',hero_cta3:'Terapia TIL',
+about_modal_html:'<h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mb-3">Cine Suntem</h3><p class="mb-4">MedConsult este reprezentantul serviciilor medicale în cele mai bune clinici din lume. Diagnostic, tratament, imunoterapie și cele mai noi tehnologii de vaccinare împotriva cancerului.</p><p class="mb-4">Înțelegem că problemele medicale și alegerea tratamentului reprezintă un proces important și dificil. Misiunea noastră este să vă ajutăm să analizați în liniște toate opțiunile posibile și să fim alături de dumneavoastră la fiecare etapă.</p><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">Vă Oferim</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>selectarea clinicilor verificate din Europa și a specialiștilor cu experiență;</li><li>asistență în comunicare, documente și aspecte organizatorice;</li><li>coordonarea tuturor proceselor fără întârzieri inutile;</li><li>însoțire înainte, în timpul și după primirea asistenței medicale;</li><li>asigurarea asistenței medicale în străinătate, în cel mai scurt timp posibil, fără așteptări în clinică.</li></ul><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">Vă Ajutăm Gratuit</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>în analiza situației dumneavoastră și a informațiilor medicale;</li><li>în studierea solicitării pacientului și formularea unei concluzii preliminare;</li><li>trimitem concluzia către clinici specializate din Europa;</li><li>asigurăm traducerea în limba română sau rusă a ofertelor primite din Europa.</li></ul><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">La Cerere</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>asigurăm programări urgente, în afara listei de așteptare, pentru investigațiile necesare (RMN, CT etc.) în Chișinău și România;</li><li>vă însoțim la centrele medicale, clinicile și laboratoarele din Chișinău și România;</li><li>asigurăm sprijin psihologic (online/offline) pentru pacient și/sau familia acestuia.</li></ul><p>Dacă pacientul este o persoană apropiată dumneavoastră, iar dumneavoastră vă aflați în afara țării, putem asigura însoțirea pacientului de la investigațiile necesare în Moldova până la însoțirea în Europa pentru tratament și retur.</p>',
 hero_card_title:'Tratamente Moderne<br>Împotriva Cancerului',hero_card_sub:'Imunoterapia TIL folosește propriul sistem imunitar al pacientului pentru a combate celulele canceroase. Eficacitate superioară chimioterapiei clasice.',
-about_label:'Despre MedConsult',about_title:'Consultanță Oncologică Profesională',
-about_p1:'MedConsult este un centru de consultanță oncologică cu sediul în Chișinău, specializat în imunoterapia TIL (Tumor Infiltrating Lymphocyte) — una dintre cele mai promițătoare metode moderne de tratament al cancerului. Clinica noastră oferă consultații, evaluări medicale și coordonarea tratamentului direct în Chișinău.',
-about_p2:'Sediul nostru este localizat direct în cadrul infrastructurii medicale din Chișinău, ceea ce permite accesul imediat la resurse medicale și rezolvarea operativă a oricăror probleme ale pacienților. Pentru cazurile care necesită infrastructură suplimentară, colaborăm și cu clinici partenere din Europa.',
-about_p3:'Principiile noastre fundamentale: profesionalism bazat pe ani de experiență, abordare personalizată a fiecărui pacient, și contact direct cu echipa medicală pe tot parcursul tratamentului.',
+about_label:'Despre MedConsult',about_title:'Cum Lucrăm',
+about_html:'<p class="mb-5">Din momentul în care pacientul ne contactează, noi:</p><p class="font-medium text-navy-900 mb-3">1. Oferim gratuit:</p><ul class="list-disc pl-5 space-y-2 mb-6"><li>studierea solicitării pacientului și selectarea clinicilor și serviciilor potrivite cererii;</li><li>analiza diagnosticului și a concluziilor medicale;</li><li>traducerea tuturor documentelor;</li><li>la solicitarea părții medicale care examinează cazul, pentru a obține o imagine completă a afecțiunii — recomandăm efectuarea unor investigații sau analize suplimentare. Acestea pot fi realizate și în Moldova sau România.</li></ul><p class="font-medium text-navy-900 mb-3">2. După primirea tuturor datelor și investigațiilor necesare,</p><p class="mb-3">identificăm clinicile și transmitem toate datele pacientului;</p><ul class="list-disc pl-5 space-y-2 mb-6"><li>ofertele primite, care includ: metodele de tratament, costul și termenele — sunt prezentate pacientului spre alegere.</li></ul><p class="font-medium text-navy-900 mb-3">3. Organizăm procesul de tratament,</p><p>de la prelucrarea datelor până la însoțirea completă a pacientului spre clinică / în cadrul clinicii / la întoarcerea acasă.</p>',
 about_c1_title:'Locație',about_c2_title:'Clinici în Europa',about_c2_text:'Parteneriate cu clinici multidisciplinare din Europa.',about_c3_title:'Consiliu Medical',about_c3_text:'Fiecare caz este analizat de un consiliu de specialiști.',about_c4_title:'Multilingv',about_c4_text:'Comunicare în română, rusă și engleză.',
 
 til_label:'Terapia TIL — Informații Medicale Complete',til_title:'Ce este Imunoterapia TIL?',
+til_highlight:'Astăzi, una dintre cele mai promițătoare metode moderne de tratament al cancerului este imunoterapia TIL (Tumor Infiltrating Lymphocyte).',
 til_intro:'Tumor Infiltrating Lymphocyte (TIL) therapy este o metodă inovatoare de imunoterapie adoptivă care utilizează celulele imunitare ale pacientului — limfocitele — pentru a lupta împotriva tumorilor maligne. Această abordare terapeutică a demonstrat o eficacitate superioară chimioterapiei clasice și este mult mai bine tolerată de pacienți.',
 til_b1_title:'Limfocitele Infiltrante ale Tumorii',
 til_b1_text:'<p>Limfocitele infiltrante ale tumorii (TIL) sunt celule imunitare speciale, capabile să pătrundă în interiorul neoplasmului malign. Aceste limfocite au o caracteristică unică: ele au deja „experiență" în lupta cu tumora specifică a pacientului, deoarece au fost în contact direct cu celulele canceroase.</p><p>Sistemul imunitar uman produce în mod natural aceste limfocite care încearcă să atace tumora. Problema este că tumora dezvoltă mecanisme de apărare care „dezactivează" aceste celule imunitare. TIL-terapia rezolvă această problemă prin extragerea limfocitelor, procesarea lor în laborator pentru a le face rezistente la semnalele tumorale inhibitoare, și reintroducerea lor în organism în cantități masive.</p>',
 til_b2_title:'De ce este TIL diferită?',
 til_b2_text:'<p>Spre deosebire de chimioterapia clasică, care atacă toate celulele cu diviziune rapidă (inclusiv cele sănătoase), TIL-terapia este extrem de specifică: limfocitele sunt „antrenate" să recunoască și să distrugă doar celulele canceroase.</p><p>Aceasta înseamnă mai puține efecte secundare, o recuperare mai rapidă și, cel mai important, capacitatea de a ataca metastazele din locuri unde chirurgia nu poate ajunge. Limfocitele sunt celule vii care circulă prin sânge și pot detecta celule canceroase în orice parte a corpului.</p>',
-til_process_title:'Procesul de Tratament — Pas cu Pas',til_process_sub:'Întregul proces de pregătire durează aproximativ o lună, de la extragerea limfocitelor până la administrarea lor.',
-til_p1_title:'Rezecția Tumorii sau Biopsia',til_p1_text:'Tratamentul începe după o intervenție chirurgicală de îndepărtare a tumorii sau după o biopsie. Țesutul tumoral prelevat este imediat crioconservat (înghețat) folosind echipament special, pentru a păstra limfocitele viabile. Identificarea precisă a zonei tumorale necesită echipament de vizualizare de ultimă generație.',
-til_p2_title:'Separarea și Ingineria Genetică',til_p2_text:'În laboratorul specializat, limfocitele sunt separate de celulele tumorale. Apoi sunt procesate prin inginerie genetică avansată pentru a deveni rezistente la semnalele pe care tumora le folosește pentru a „dezactiva" sistemul imunitar. Acest pas este crucial pentru eficacitatea tratamentului.',
-til_p3_title:'Multiplicarea Limfocitelor',til_p3_text:'Limfocitele perfecționate sunt multiplicate în laborator până la cantități terapeutice — de la câteva mii la miliarde de celule. Acest proces de cultivare necesită echipament de laborator modern și durează aproximativ 2-4 săptămâni. Este realizat doar în câteva clinici specializate din lume.',
-til_p4_title:'Administrarea Tratamentului',til_p4_text:'Pacientul primește un scurt curs de chimioterapie pregătitoare (limfodepletivă), care pregătește organismul pentru noile celule. Apoi limfocitele sunt administrate intravenos, similar unei transfuzii de sânge. Aceste celule încep imediat să caute și să distrugă celulele canceroase în tot corpul.',
-til_img1_cap:'<strong class="block text-navy-900 font-medium mb-1">Conceptul de Tratament TIL</strong>Tumora este rezecată chirurgical, iar limfocitele infiltrante sunt extrase și cultivate în laborator. Acestea sunt multiplicate până la peste 10 miliarde de celule, după care sunt administrate intravenos pacientului — precedate de o fază de supresie a măduvei osoase care pregătește organismul să primească noile celule imunitare.',til_img2_cap:'<strong class="block text-navy-900 font-medium mb-1">Mecanismul de Acțiune</strong>Celulele T infiltrante sunt selectate din tumoră și multiplicate prin cultivare în afara corpului. Celulele T multiplicate sunt reinfuzate în pacient, unde identifică și atacă direct celulele canceroase, distrugând tumora din interior.',
-til_types_title:'Ce Tipuri de Cancer Tratează?',til_types_text:'<p>TIL-terapia poate fi aplicată pentru orice tip de cancer. Această metodă inovatoare utilizează propriile celule imunitare ale pacientului, ceea ce o face adaptabilă la diverse forme de neoplasme maligne, indiferent de localizarea sau stadiul bolii.</p><p>Consiliul de medici studiază în detaliu dosarul medical al fiecărui pacient și decide individual dacă acesta este eligibil pentru tratamentul TIL. Evaluarea include analiza tipului de cancer, stadiul bolii, starea generală de sănătate și tratamentele anterioare.</p>',
+til_img1_cap:'<strong class="block text-navy-900 font-medium mb-1">Conceptul de Tratament TIL</strong>Tumora este rezecată chirurgical, iar limfocitele infiltrante sunt extrase și cultivate în laborator. Acestea sunt multiplicate până la peste 10 miliarde de celule, după care sunt administrate intravenos pacientului.',til_img2_cap:'<strong class="block text-navy-900 font-medium mb-1">Mecanismul de Acțiune</strong>Celulele T infiltrante sunt selectate din tumoră și multiplicate prin cultivare în afara corpului. Celulele T multiplicate sunt reinfuzate în pacient, unde identifică și atacă direct celulele canceroase, distrugând tumora din interior.',
+til_types_title:'Ce Tipuri de Cancer Tratează?',til_types_text:'<p>TIL-terapia poate fi aplicată pentru multe tipuri de cancer. Această metodă inovatoare utilizează propriile celule imunitare ale pacientului, ceea ce o face adaptabilă la diverse forme de neoplasme maligne.</p><p>Consiliul de medici studiază în detaliu dosarul medical al fiecărui pacient și decide individual dacă acesta este eligibil pentru tratamentul TIL. Evaluarea include analiza tipului de cancer, stadiul bolii, starea generală de sănătate și tratamentele anterioare.</p>',
 til_contra_title:'Contraindicații',til_contra_text:'<p>TIL-terapia are puține efecte secundare serioase comparativ cu chimioterapia convențională. Cu toate acestea, există anumite contraindicații care trebuie luate în considerare.</p><p>Principalele contraindicații includ: vârsta pacientului peste 75 de ani și starea generală gravă a pacientului, care ar putea împiedica tolerarea fazei de chimioterapie pregătitoare. Fiecare situație clinică este evaluată individual de echipa medicală.</p>',
-til_tech_title:'Provocările Tehnologice ale TIL-Terapiei',til_tech_text:'<p>Obținerea celulelor TIL este un proces tehnologic extrem de complex, realizat doar în câteva clinici specializate din lume. Aceasta este una dintre cele mai avansate forme de medicină personalizată disponibile astăzi.</p><p>Principalele provocări tehnice includ: identificarea cu precizie maximă a zonei tumorale pentru rezecție, care necesită echipament de vizualizare de ultimă generație (PET-CT, RMN 3 Tesla); echipament de laborator modern și steril pentru izolarea, procesarea și multiplicarea limfocitelor; și echipament special de crioconservare pentru înghețarea imediată a țesutului tumoral după operație sau biopsie.</p><p>Din acest motiv, MedConsult colaborează cu clinici de vârf din Europa care dispun de toată infrastructura necesară — de la săli de operație echipate cu sistem de navigare de ultimă generație, până la laboratoare certificate pentru terapia celulară.</p>',
+til_tech_title:'Provocările Tehnologice ale TIL-Terapiei',til_tech_text:'<p>Obținerea celulelor TIL este un proces tehnologic extrem de complex, realizat doar în câteva clinici specializate din lume. Aceasta este una dintre cele mai avansate forme de medicină personalizată disponibile astăzi.</p><p>Fiecare caz este analizat de un consiliu de specialiști.</p><p>Din acest motiv, MedConsult colaborează cu clinici de vârf din Europa care dispun de toată infrastructura necesară — de la săli de operație echipate cu sistem de navigare de ultimă generație, până la laboratoare certificate pentru terapia celulară.</p>',
 til_vid_cap:'Video explicativ despre terapia TIL',
 svc_label:'Servicii',svc_title:'Ce Oferim',
 sv1_title:'Consultanță Oncologică',sv1_desc:'Evaluare completă a dosarului medical. Consiliul nostru de specialiști analizează cazul, studiază istoricul medical, rezultatele diagnosticelor și tratamentele anterioare, apoi recomandă cel mai eficient plan de tratament personalizat.',
 sv2_title:'Imunoterapie TIL',sv2_desc:'Coordonarea întregului proces de imunoterapie cu limfocite infiltrante: de la evaluarea eligibilității, pregătirea dosarului, până la organizarea tratamentului la clinicile partenere europene specializate.',
 sv3_title:'Asistență Completă în Chișinău',sv3_desc:'Organizăm întregul parcurs al pacientului direct din Chișinău: consultație inițială, evaluare medicală, coordonare tratament, traduceri, documentație și monitorizare post-tratament. Pentru cazuri speciale, asigurăm și legătura cu clinici partenere din Europa.',
 sv_cta:'Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4 inline"></i>',
-ct_label:'Contact',ct_title:'Contactați-ne',ct_sub:'Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română, rusă și engleză.',
+ct_label:'Contact',ct_title:'Contactați-ne',ct_sub:'Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română și rusă.',
 ct_loc_label:'Locație',ct_phone_label:'Telefon / WhatsApp / Viber',
-ct_form_title:'Solicită o Consultație',f_name:'Nume',f_phone:'Telefon',f_msg:'Mesaj',f_submit:'Trimite Cererea',
+ct_form_title:'Solicită o Consultație',ct_form_sub:'Trimiteți-ne un email și vă vom contacta în cel mai scurt timp.',f_submit:'Solicită Consultație',
 ft_privacy:'Politica de Confidențialitate',ft_terms:'Termeni și Condiții',ft_rights:'Toate drepturile rezervate.',ft_rights_detail:'Reproducerea conținutului fără acordul scris al MedConsult este interzisă.',ft_legal_entity:'Entitate Juridică',ft_data_controller:'Responsabil cu datele:',
 med_disclaimer:'Informațiile de pe acest site au caracter informativ general și nu constituie consiliere medicală. Trimiterea unei cereri de consultație nu stabilește un raport medic-pacient. Consultați întotdeauna un medic calificat înainte de a lua decizii medicale.',
 f_disclaimer:'Trimiterea acestui formular nu constituie o consultație medicală și nu creează un raport medic-pacient.',
@@ -554,40 +457,35 @@ ru:{
 nav_about:'О Нас',nav_til:'TIL Терапия',nav_services:'Услуги',nav_contact:'Контакт',
 hero_badge:'Кишинёв, Республика Молдова',
 nav_tagline:'Онкологическая Иммунотерапия',
-hero_title:'Онкологическая Иммунотерапия<br><em class="text-sky-500 not-italic">Европейского Уровня.</em>',
-hero_sub:'Центр онкологической консультации и TIL-иммунотерапии в Кишинёве — современные методы лечения рака с доступом к технологиям европейского уровня.',
-hero_cta1:'О TIL Терапии',hero_cta2:'Связаться с Нами',
+hero_title:'MedConsult',
+hero_sub:'MedConsult — это представитель медицинских услуг в лучших клиниках мира. Диагностика, лечение, иммунотерапия и новейшие технологии вакцинации при онкологических заболеваниях.',
+hero_cta1:'О Нас',hero_cta2:'Связаться с Нами',hero_cta3:'TIL Терапия',
+about_modal_html:'<h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mb-3">Кто Мы</h3><p class="mb-4">MedConsult — это представитель медицинских услуг в лучших клиниках мира. Диагностика, лечение, иммунотерапия и новейшие технологии вакцинации рака.</p><p class="mb-4">Мы понимаем, что медицинские вопросы и выбор лечения — важный и непростой процесс. Наша задача — помочь вам спокойно разобраться во всех возможных вариантах и быть рядом на каждом этапе.</p><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">Мы Предлагаем Вам</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>подобрать проверенные клиники в Европе и специалистов с опытом;</li><li>помочь с коммуникацией, документами и организационными вопросами;</li><li>скоординировать все процессы без лишних задержек;</li><li>сопровождать вас до, во время и после получения медицинской помощи;</li><li>обеспечить Вам медицинскую помощь за рубежом, в наикратчайшие сроки, без ожиданий в клинике.</li></ul><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">Мы Поможем Вам Бесплатно</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>в разборе Вашей ситуации и медицинской информации;</li><li>в изучении запроса пациента и формировании предварительного заключения;</li><li>отправим заключение в специализированные клиники Европы;</li><li>предоставляем перевод на русский или румынский языки представленных предложений из Европы.</li></ul><h3 class="font-display text-navy-900 text-base uppercase tracking-[.2em] mt-7 mb-3">По Запросу</h3><ul class="list-disc pl-5 space-y-2 mb-4"><li>обеспечиваем срочные записи, вне очереди, на необходимые обследования (МРТ, КТ и др.) в Кишинёве и Румынии;</li><li>сопровождаем в медицинские центры, клиники и лаборатории Кишинёва и Румынии;</li><li>обеспечиваем психологическое сопровождение (он/офлайн) пациента и/или его семьи.</li></ul><p>Если пациентом является близкий Вам человек, а Вы находитесь не в стране, мы можем обеспечить сопровождение пациента от необходимого обследования в Молдове и до сопровождения в Европу на лечение и обратно.</p>',
 hero_card_title:'Современные Методы<br>Лечения Рака',hero_card_sub:'TIL-иммунотерапия использует собственную иммунную систему пациента для борьбы с раковыми клетками. Эффективность превышает классическую химиотерапию.',
-about_label:'О MedConsult',about_title:'Профессиональная Онкологическая Консультация',
-about_p1:'MedConsult — это центр онкологической консультации в Кишинёве, специализирующийся на TIL-иммунотерапии (Tumor Infiltrating Lymphocyte) — одном из наиболее перспективных современных методов лечения рака. Наша клиника предоставляет консультации, медицинскую оценку и координацию лечения непосредственно в Кишинёве.',
-about_p2:'Наш офис расположен непосредственно в медицинской инфраструктуре Кишинёва, обеспечивая мгновенный доступ к медицинским ресурсам и оперативное решение вопросов пациентов. В случаях, требующих дополнительной инфраструктуры, мы сотрудничаем с клиниками-партнёрами в Европе.',
-about_p3:'Наши основные принципы: профессионализм, основанный на многолетнем опыте, индивидуальный подход к каждому пациенту и прямой контакт с медицинской командой на протяжении всего лечения.',
+about_label:'О MedConsult',about_title:'Как Мы Работаем',
+about_html:'<p class="mb-5">С момента обращения пациента, мы:</p><p class="font-medium text-navy-900 mb-3">1. Бесплатно предоставляем:</p><ul class="list-disc pl-5 space-y-2 mb-6"><li>изучение запроса пациента и подбор соответствующих клиник и услуг под запрос;</li><li>изучение диагноза и медицинских заключений;</li><li>перевод всех документов;</li><li>по запросу изучающей медицинской стороны, для обеспечения полной картины заболевания — рекомендуем пройти дополнительные обследования или анализы. Их так же можно сделать в Молдове или Румынии.</li></ul><p class="font-medium text-navy-900 mb-3">2. После получения всех необходимых данных и исследований,</p><p class="mb-3">мы подбираем клиники, отправляем все данные пациента;</p><ul class="list-disc pl-5 space-y-2 mb-6"><li>полученные предложения, включающие: методы лечения, стоимость и сроки — предоставляем пациенту на выбор.</li></ul><p class="font-medium text-navy-900 mb-3">3. Организуем процесс лечения,</p><p>от обработки данных до полного сопровождения пациента в клинику / в самой клинике / возвращения домой.</p>',
 about_c1_title:'Расположение',about_c2_title:'Клиники в Европе',about_c2_text:'Партнёрства с многопрофильными клиниками Европы.',about_c3_title:'Медицинский Консилиум',about_c3_text:'Каждый случай анализируется консилиумом специалистов.',about_c4_title:'Многоязычность',about_c4_text:'Общение на румынском, русском и английском.',
 
 til_label:'TIL Терапия — Полная Медицинская Информация',til_title:'Что такое TIL-иммунотерапия?',
+til_highlight:'Сегодня, одним из наиболее перспективных современных методов лечения рака является TIL-иммунотерапия (Tumor Infiltrating Lymphocyte).',
 til_intro:'Tumor Infiltrating Lymphocyte (TIL) therapy — это инновационный метод адоптивной иммунотерапии, использующий иммунные клетки пациента — лимфоциты — для борьбы со злокачественными опухолями. Этот терапевтический подход демонстрирует превосходящую эффективность по сравнению с классической химиотерапией и значительно лучше переносится пациентами.',
 til_b1_title:'Инфильтрирующие Опухоль Лимфоциты',
 til_b1_text:'<p>Инфильтрирующие опухоль лимфоциты (TIL) — это особые иммунные клетки, способные проникать внутрь злокачественного новообразования. Эти лимфоциты обладают уникальной характеристикой: они уже имеют «опыт» борьбы с конкретной опухолью пациента, поскольку находились в прямом контакте с раковыми клетками.</p><p>Иммунная система человека естественным образом производит эти лимфоциты, пытающиеся атаковать опухоль. Проблема в том, что опухоль развивает защитные механизмы, «отключающие» эти иммунные клетки. TIL-терапия решает эту проблему путём извлечения лимфоцитов, их обработки в лаборатории для устойчивости к ингибирующим сигналам опухоли и реинтродукции в организм в массивных количествах.</p>',
 til_b2_title:'Чем TIL отличается?',
 til_b2_text:'<p>В отличие от классической химиотерапии, атакующей все быстро делящиеся клетки (включая здоровые), TIL-терапия крайне специфична: лимфоциты «обучены» распознавать и уничтожать только раковые клетки.</p><p>Это означает меньше побочных эффектов, более быстрое восстановление и, что важнее всего, способность атаковать метастазы в местах, недоступных для хирургии. Лимфоциты — живые клетки, циркулирующие через кровь и способные обнаруживать раковые клетки в любой части тела.</p>',
-til_process_title:'Процесс Лечения — Шаг за Шагом',til_process_sub:'Весь процесс подготовки занимает примерно один месяц, от извлечения лимфоцитов до их введения.',
-til_p1_title:'Резекция Опухоли или Биопсия',til_p1_text:'Лечение начинается после хирургической операции по удалению опухоли или после биопсии. Извлечённая опухолевая ткань немедленно криоконсервируется (замораживается) с помощью специального оборудования для сохранения жизнеспособности лимфоцитов. Точное определение опухолевой зоны требует визуализационного оборудования последнего поколения.',
-til_p2_title:'Разделение и Генная Инженерия',til_p2_text:'В специализированной лаборатории лимфоциты отделяются от опухолевых клеток. Затем они обрабатываются методами продвинутой генной инженерии для устойчивости к сигналам, которые опухоль использует для «отключения» иммунной системы. Этот этап критически важен для эффективности лечения.',
-til_p3_title:'Размножение Лимфоцитов',til_p3_text:'Усовершенствованные лимфоциты размножаются в лаборатории до терапевтических количеств — от нескольких тысяч до миллиардов клеток. Этот процесс культивирования требует современного лабораторного оборудования и занимает примерно 2-4 недели. Выполняется лишь в нескольких специализированных клиниках мира.',
-til_p4_title:'Введение Лечения',til_p4_text:'Пациент получает короткий курс подготовительной (лимфодеплетивной) химиотерапии, подготавливающей организм к новым клеткам. Затем лимфоциты вводятся внутривенно, подобно переливанию крови. Эти клетки немедленно начинают искать и уничтожать раковые клетки по всему телу.',
-til_img1_cap:'<strong class="block text-navy-900 font-medium mb-1">Концепция лечения TIL</strong>Опухоль хирургически удаляется, а инфильтрирующие лимфоциты извлекаются и культивируются в лаборатории. Они размножаются до более 10 миллиардов клеток, после чего вводятся пациенту внутривенно — после фазы супрессии костного мозга, подготавливающей организм к принятию новых иммунных клеток.',til_img2_cap:'<strong class="block text-navy-900 font-medium mb-1">Механизм Действия</strong>Инфильтрирующие T-клетки отбираются из опухоли и размножаются путём культивирования вне организма. Размноженные T-клетки реинфузируются пациенту, где они обнаруживают и напрямую атакуют раковые клетки, уничтожая опухоль изнутри.',
-til_types_title:'Какие Виды Рака Лечит?',til_types_text:'<p>TIL-терапия может применяться при любом типе рака. Этот инновационный метод использует собственные иммунные клетки пациента, что делает его адаптируемым к различным формам злокачественных новообразований, независимо от локализации или стадии заболевания.</p><p>Консилиум врачей детально изучает медицинское дело каждого пациента и индивидуально решает, подходит ли он для TIL-лечения. Оценка включает анализ типа рака, стадии заболевания, общего состояния здоровья и предшествующих методов лечения.</p>',
+til_img1_cap:'<strong class="block text-navy-900 font-medium mb-1">Концепция лечения TIL</strong>Опухоль хирургически удаляется, а инфильтрирующие лимфоциты извлекаются и культивируются в лаборатории. Они размножаются до более 10 миллиардов клеток, после чего вводятся пациенту внутривенно.',til_img2_cap:'<strong class="block text-navy-900 font-medium mb-1">Механизм Действия</strong>Инфильтрирующие T-клетки отбираются из опухоли и размножаются путём культивирования вне организма. Размноженные T-клетки реинфузируются пациенту, где они обнаруживают и напрямую атакуют раковые клетки, уничтожая опухоль изнутри.',
+til_types_title:'Какие Виды Рака Лечит?',til_types_text:'<p>TIL-терапия может применяться при многих типах рака. Этот инновационный метод использует собственные иммунные клетки пациента, что делает его адаптируемым к различным формам злокачественных новообразований.</p><p>Консилиум врачей детально изучает медицинское дело каждого пациента и индивидуально решает, подходит ли он для TIL-лечения. Оценка включает анализ типа рака, стадии заболевания, общего состояния здоровья и предшествующих методов лечения.</p>',
 til_contra_title:'Противопоказания',til_contra_text:'<p>TIL-терапия имеет мало серьёзных побочных эффектов по сравнению с обычной химиотерапией. Тем не менее, существуют определённые противопоказания.</p><p>Основные противопоказания включают: возраст пациента старше 75 лет и тяжёлое общее состояние, которое может препятствовать переносимости фазы подготовительной химиотерапии. Каждая клиническая ситуация оценивается индивидуально медицинской командой.</p>',
-til_tech_title:'Технологические Вызовы TIL-Терапии',til_tech_text:'<p>Получение TIL-клеток — крайне сложный технологический процесс, выполняемый лишь в немногих специализированных клиниках мира. Это одна из наиболее продвинутых форм персонализированной медицины на сегодня.</p><p>Основные технические вызовы: максимально точное определение опухолевой зоны для резекции с помощью визуализационного оборудования последнего поколения (ПЭТ-КТ, МРТ 3 Тесла); современное стерильное лабораторное оборудование для изоляции, обработки и размножения лимфоцитов; специальное криоконсервационное оборудование для немедленной заморозки опухолевой ткани.</p><p>По этой причине MedConsult сотрудничает с ведущими клиниками Европы, располагающими всей необходимой инфраструктурой — от операционных с системами навигации последнего поколения до сертифицированных лабораторий клеточной терапии.</p>',
+til_tech_title:'Технологические Вызовы TIL-Терапии',til_tech_text:'<p>Получение TIL-клеток — крайне сложный технологический процесс, выполняемый лишь в немногих специализированных клиниках мира. Это одна из наиболее продвинутых форм персонализированной медицины на сегодня.</p><p>Каждый случай анализируется консилиумом специалистов.</p><p>По этой причине MedConsult сотрудничает с ведущими клиниками Европы, располагающими всей необходимой инфраструктурой — от операционных с системами навигации последнего поколения до сертифицированных лабораторий клеточной терапии.</p>',
 til_vid_cap:'Видео о TIL-терапии',
 svc_label:'Услуги',svc_title:'Что Мы Предлагаем',
 sv1_title:'Онкологическая Консультация',sv1_desc:'Полная оценка медицинского дела. Наш консилиум специалистов анализирует случай, изучает историю болезни, диагностику и предшествующее лечение, затем рекомендует наиболее эффективный индивидуальный план.',
 sv2_title:'TIL Иммунотерапия',sv2_desc:'Координация полного процесса иммунотерапии инфильтрирующими лимфоцитами: от оценки пригодности и подготовки дела до организации лечения в специализированных европейских клиниках-партнёрах.',
 sv3_title:'Полное Сопровождение в Кишинёве',sv3_desc:'Организуем весь путь пациента непосредственно из Кишинёва: первичная консультация, медицинская оценка, координация лечения, переводы, документация и послелечебное наблюдение. В особых случаях обеспечиваем связь с клиниками-партнёрами в Европе.',
 sv_cta:'Запросить информацию <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4 inline"></i>',
-ct_label:'Контакт',ct_title:'Свяжитесь с Нами',ct_sub:'Сделайте первый шаг к современному лечению. Напишите или позвоните — отвечаем на румынском, русском и английском.',
+ct_label:'Контакт',ct_title:'Свяжитесь с Нами',ct_sub:'Сделайте первый шаг к современному лечению. Напишите или позвоните — отвечаем на румынском и русском.',
 ct_loc_label:'Расположение',ct_phone_label:'Телефон / WhatsApp / Viber',
-ct_form_title:'Запросить Консультацию',f_name:'Имя',f_phone:'Телефон',f_msg:'Сообщение',f_submit:'Отправить Запрос',
+ct_form_title:'Запросить Консультацию',ct_form_sub:'Напишите нам на email — мы свяжемся с вами в кратчайшие сроки.',f_submit:'Запросить Консультацию',
 ft_privacy:'Политика Конфиденциальности',ft_terms:'Условия Использования',ft_rights:'Все права защищены.',ft_rights_detail:'Воспроизведение контента без письменного согласия MedConsult запрещено.',ft_legal_entity:'Юридическое лицо',ft_data_controller:'Ответственный за данные:',
 med_disclaimer:'Информация на этом сайте носит общий информационный характер и не является медицинской консультацией. Отправка запроса на консультацию не устанавливает отношений врач-пациент. Всегда консультируйтесь с квалифицированным врачом перед принятием медицинских решений.',
 f_disclaimer:'Отправка этой формы не является медицинской консультацией и не создаёт отношений врач-пациент.',
@@ -597,56 +495,13 @@ legal_p1:'Информация на этом сайте носит общий и
 legal_p2:'MedConsult предоставляет услуги медицинской консультации и координации. Описанные методы лечения проводятся аккредитованными клиниками-партнёрами в Европе. Результаты лечения могут варьироваться.',
 legal_p3:'Используя этот сайт, вы соглашаетесь со сбором и обработкой персональных данных через контактную форму в соответствии с GDPR. Ваши данные используются исключительно для ответа на обращения. Мы не передаём данные третьим лицам без вашего согласия.',
 legal_p4:'Для реализации прав на доступ, исправление или удаление персональных данных свяжитесь с нами указанными способами.'
-},
-en:{
-nav_about:'About',nav_til:'TIL Therapy',nav_services:'Services',nav_contact:'Contact',
-hero_badge:'Chișinău, Republic of Moldova',
-nav_tagline:'Oncological Immunotherapy',
-hero_title:'Oncological Immunotherapy<br><em class="text-sky-500 not-italic">of European Standard.</em>',
-hero_sub:'Oncological consultancy and TIL immunotherapy center in Chișinău — modern cancer treatments with access to European-level technologies.',
-hero_cta1:'About TIL Therapy',hero_cta2:'Contact Us',
-hero_card_title:'Modern Cancer<br>Treatments',hero_card_sub:'TIL immunotherapy uses the patient\'s own immune system to fight cancer cells. Effectiveness surpasses classical chemotherapy.',
-about_label:'About MedConsult',about_title:'Professional Oncological Consultancy',
-about_p1:'MedConsult is an oncological consultancy center based in Chișinău, specializing in TIL immunotherapy (Tumor Infiltrating Lymphocyte) — one of the most promising modern methods of cancer treatment. Our clinic provides consultations, medical evaluations, and treatment coordination directly in Chișinău.',
-about_p2:'Our office is located directly within the medical infrastructure of Chișinău, providing immediate access to medical resources and prompt resolution of patient concerns. For cases requiring additional infrastructure, we also collaborate with partner clinics in Europe.',
-about_p3:'Our fundamental principles: professionalism based on years of experience, personalized approach to each patient, and direct contact with the medical team throughout the entire treatment.',
-about_c1_title:'Location',about_c2_title:'Clinics in Europe',about_c2_text:'Partnerships with multidisciplinary clinics in Europe.',about_c3_title:'Medical Council',about_c3_text:'Every case is analyzed by a council of specialists.',about_c4_title:'Multilingual',about_c4_text:'Communication in Romanian, Russian and English.',
-
-til_label:'TIL Therapy — Complete Medical Information',til_title:'What is TIL Immunotherapy?',
-til_intro:'Tumor Infiltrating Lymphocyte (TIL) therapy is an innovative method of adoptive immunotherapy that uses the patient\'s own immune cells — lymphocytes — to fight malignant tumors. This therapeutic approach has demonstrated superior effectiveness compared to classical chemotherapy and is much better tolerated by patients.',
-til_b1_title:'Tumor Infiltrating Lymphocytes',
-til_b1_text:'<p>Tumor infiltrating lymphocytes (TIL) are special immune cells capable of penetrating inside malignant tumors. These lymphocytes have a unique characteristic: they already have "experience" fighting the patient\'s specific tumor, as they have been in direct contact with cancer cells.</p><p>The human immune system naturally produces these lymphocytes that attempt to attack the tumor. The problem is that tumors develop defense mechanisms that "switch off" these immune cells. TIL therapy solves this problem by extracting the lymphocytes, processing them in the laboratory to make them resistant to inhibitory tumor signals, and reintroducing them into the body in massive quantities.</p>',
-til_b2_title:'Why is TIL Different?',
-til_b2_text:'<p>Unlike classical chemotherapy, which attacks all rapidly dividing cells (including healthy ones), TIL therapy is extremely specific: lymphocytes are "trained" to recognize and destroy only cancer cells.</p><p>This means fewer side effects, faster recovery, and most importantly, the ability to attack metastases in locations where surgery cannot reach. Lymphocytes are living cells that circulate through the blood and can detect cancer cells in any part of the body.</p>',
-til_process_title:'Treatment Process — Step by Step',til_process_sub:'The entire preparation process takes approximately one month, from lymphocyte extraction to their administration.',
-til_p1_title:'Tumor Resection or Biopsy',til_p1_text:'Treatment begins after surgical removal of the tumor or after a biopsy. The extracted tumor tissue is immediately cryopreserved (frozen) using special equipment to preserve lymphocyte viability. Precise identification of the tumor zone requires state-of-the-art visualization equipment.',
-til_p2_title:'Separation & Genetic Engineering',til_p2_text:'In the specialized laboratory, lymphocytes are separated from tumor cells. They are then processed through advanced genetic engineering to become resistant to signals the tumor uses to "switch off" the immune system. This step is crucial for treatment effectiveness.',
-til_p3_title:'Lymphocyte Multiplication',til_p3_text:'The enhanced lymphocytes are multiplied in the laboratory to therapeutic quantities — from several thousand to billions of cells. This cultivation process requires modern laboratory equipment and takes approximately 2-4 weeks. It is performed in only a few specialized clinics worldwide.',
-til_p4_title:'Treatment Administration',til_p4_text:'The patient receives a short course of preparatory (lymphodepleting) chemotherapy, preparing the body for the new cells. The lymphocytes are then administered intravenously, similar to a blood transfusion. These cells immediately begin searching for and destroying cancer cells throughout the body.',
-til_img1_cap:'<strong class="block text-navy-900 font-medium mb-1">TIL Treatment Concept</strong>The tumor is surgically resected and the infiltrating lymphocytes are extracted and cultured in the laboratory. They are expanded to over 10 billion cells, then administered intravenously to the patient — following a bone marrow suppression phase that prepares the body to receive the new immune cells.',til_img2_cap:'<strong class="block text-navy-900 font-medium mb-1">Mechanism of Action</strong>Infiltrating T cells are selected from the tumor and expanded by culturing outside the body. The expanded T cells are reinfused into the patient, where they identify and directly attack cancer cells, destroying the tumor from within.',
-til_types_title:'What Types of Cancer Does It Treat?',til_types_text:'<p>TIL therapy can be applied to any type of cancer. This innovative method uses the patient\'s own immune cells, making it adaptable to various forms of malignant tumors, regardless of location or disease stage.</p><p>The medical council studies each patient\'s medical file in detail and individually decides whether they are eligible for TIL treatment. Evaluation includes analysis of cancer type, disease stage, overall health status, and previous treatments.</p>',
-til_contra_title:'Contraindications',til_contra_text:'<p>TIL therapy has few serious side effects compared to conventional chemotherapy. However, certain contraindications must be considered.</p><p>Main contraindications include: patient age over 75 years and severe overall condition that could prevent tolerating the preparatory chemotherapy phase. Each clinical situation is evaluated individually by the medical team.</p>',
-til_tech_title:'Technological Challenges of TIL Therapy',til_tech_text:'<p>Obtaining TIL cells is an extremely complex technological process, performed in only a few specialized clinics worldwide. This is one of the most advanced forms of personalized medicine available today.</p><p>Key technical challenges include: maximally precise identification of the tumor zone for resection, requiring state-of-the-art visualization equipment (PET-CT, 3 Tesla MRI); modern sterile laboratory equipment for isolation, processing, and multiplication of lymphocytes; and special cryopreservation equipment for immediate freezing of tumor tissue after surgery or biopsy.</p><p>For this reason, MedConsult collaborates with top European clinics possessing all necessary infrastructure — from operating rooms equipped with next-generation navigation systems to certified cell therapy laboratories.</p>',
-til_vid_cap:'TIL therapy explanatory video',
-svc_label:'Services',svc_title:'What We Offer',
-sv1_title:'Oncological Consultancy',sv1_desc:'Complete medical file evaluation. Our council of specialists analyzes the case, studies medical history, diagnostics, and previous treatments, then recommends the most effective personalized treatment plan.',
-sv2_title:'TIL Immunotherapy',sv2_desc:'Coordination of the entire infiltrating lymphocyte immunotherapy process: from eligibility assessment and file preparation to organizing treatment at specialized European partner clinics.',
-sv3_title:'Complete Support in Chișinău',sv3_desc:'We organize the entire patient journey directly from Chișinău: initial consultation, medical evaluation, treatment coordination, translations, documentation, and post-treatment monitoring. For special cases, we also provide liaison with partner clinics in Europe.',
-sv_cta:'Request information <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4 inline"></i>',
-ct_label:'Contact',ct_title:'Contact Us',ct_sub:'Take the first step towards modern treatment. Write or call us for a consultation — we respond in Romanian, Russian, and English.',
-ct_loc_label:'Location',ct_phone_label:'Phone / WhatsApp / Viber',
-ct_form_title:'Request a Consultation',f_name:'Name',f_phone:'Phone',f_msg:'Message',f_submit:'Submit Request',
-ft_privacy:'Privacy Policy',ft_terms:'Terms & Conditions',ft_rights:'All rights reserved.',ft_rights_detail:'Reproduction of content without the written consent of MedConsult is prohibited.',ft_legal_entity:'Legal Entity',ft_data_controller:'Data Controller:',
-med_disclaimer:'The information on this site is for general informational purposes only and does not constitute medical advice. Submitting a consultation request does not establish a doctor-patient relationship. Always consult a qualified physician before making any medical decisions.',
-f_disclaimer:'Submitting this form does not constitute a medical consultation and does not create a doctor-patient relationship.',
-cookie_text:'This site uses cookies to provide you with a better experience. You may accept or decline their use.',cookie_btn:'Accept',cookie_reject:'Decline',
-legal_title:'Legal Information',
-legal_p1:'The information on this site is for general informational purposes only and does not constitute medical advice. No content on this site can replace professional medical consultation, diagnosis, or treatment.',
-legal_p2:'MedConsult provides medical consultation and coordination services. Treatments described on this site are performed by accredited partner clinics in Europe. Treatment results may vary.',
-legal_p3:'By using this site, you agree to the collection and processing of personal data provided through the contact form, in accordance with GDPR legislation. Your data will be used exclusively to respond to requests. We do not share your data with third parties without your consent.',
-legal_p4:'To exercise your rights of access, rectification, or deletion of personal data, please contact us through the channels indicated on this site.'
 }
 };
+
+// About modal
+function openAbout(){document.getElementById('aboutModal').classList.remove('hide');document.body.style.overflow='hidden';lucide.createIcons();}
+function closeAbout(){document.getElementById('aboutModal').classList.add('hide');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAbout();});
 
 // Language popup
 function pickLang(l){localStorage.setItem('mc_lang',l);document.getElementById('langPopup').classList.add('hide');setLang(l)}
@@ -657,6 +512,7 @@ function setLang(l){
 document.querySelectorAll('.lb').forEach(b=>{b.classList.remove('active');b.classList.add('text-slate-400');if(b.textContent.trim().toLowerCase()===l){b.classList.add('active');b.classList.remove('text-slate-400')}});
 const t=T[l];if(!t)return;
 document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k])el.innerHTML=t[k]});
+document.querySelectorAll('img[data-img-'+l+']').forEach(img=>{const s=img.getAttribute('data-img-'+l);if(s)img.src=s});
 document.documentElement.lang=l;localStorage.setItem('mc_lang',l);lucide.createIcons();
 }
 
@@ -770,40 +626,12 @@ lucide.createIcons();
   loop();
 })();
 
-// Step cards swipe dots
-(function(){
-  const track=document.getElementById('stepTrack');
-  const dotsEl=document.getElementById('stepDots');
-  const hint=document.getElementById('swipeHint');
-  if(!track||!dotsEl)return;
-  const dots=Array.from(dotsEl.children);
-  let hintFaded=false;
-  track.addEventListener('scroll',function(){
-    // Fade hint on first swipe
-    if(!hintFaded&&track.scrollLeft>10){
-      hintFaded=true;
-      if(hint)hint.style.opacity='0';
-    }
-    // Find closest card by scrollLeft
-    const cards=Array.from(track.children);
-    let closest=0,minDist=Infinity;
-    cards.forEach((c,i)=>{
-      const dist=Math.abs(c.offsetLeft-track.scrollLeft);
-      if(dist<minDist){minDist=dist;closest=i;}
-    });
-    dots.forEach((d,i)=>{
-      if(i===closest){d.style.width='1rem';d.style.backgroundColor='rgb(56 189 248)';}
-      else{d.style.width='0.375rem';d.style.backgroundColor='rgba(255,255,255,0.2)';}
-    });
-  },{passive:true});
-})();
-
 // YouTube custom player
 function loadYT(){
   const el=document.getElementById('ytPlayer');
   if(!el)return;
   const lang=localStorage.getItem('mc_lang')||'ro';
-  const ccLang=lang==='ru'?'ru':lang==='en'?'en':'ro';
+  const ccLang=lang==='ru'?'ru':'ro';
   const iframe=document.createElement('iframe');
   iframe.className='w-full h-full';
   iframe.src=`https://www.youtube.com/embed/sDB4GLBgurA?autoplay=1&cc_load_policy=1&cc_lang_pref=${ccLang}&hl=${ccLang}&rel=0`;
