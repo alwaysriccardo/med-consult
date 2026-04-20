@@ -10,6 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['Inter','sans-serif']},colors:{navy:{'50':'#f0f4fa','100':'#dce4f2','900':'#0B1B3D','800':'#0F2550','700':'#153066'},teal:{'50':'#f0fdfa','100':'#ccfbf1','200':'#99f6e4','300':'#5eead4','400':'#2dd4bf','500':'#14b8a6'}}}}}</script>
 <style>
 *{scroll-behavior:smooth;margin:0;padding:0;box-sizing:border-box}
@@ -53,6 +56,16 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#f1f5f9}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
+
+/* Admin inline editing */
+.admin-editable{outline:2px dashed rgba(20,184,166,.45)!important;outline-offset:2px;cursor:text;transition:outline-color .2s}
+.admin-editable:hover{outline-color:rgba(20,184,166,.8)!important}
+.admin-editable:focus{outline:2px solid #14b8a6!important;background:rgba(20,184,166,.04);outline-offset:2px}
+.admin-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:#0B1B3D;color:#fff;font-size:12px;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif}
+.admin-bar button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:5px 14px;border-radius:6px;font-size:11px;cursor:pointer;transition:background .2s}
+.admin-bar button:hover{background:rgba(255,255,255,.22)}
+.admin-saving{position:fixed;bottom:24px;right:24px;z-index:10001;background:#0B1B3D;color:#fff;padding:8px 18px;border-radius:8px;font-size:12px;font-family:'Inter',sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.admin-saving.show{opacity:1}
 
 /* Stacked section cards */
 #about{box-shadow:0 -24px 80px rgba(0,0,0,0.28)}
@@ -386,8 +399,32 @@ YouTube
 <a href="javascript:void(0)" onclick="(function(){var el=document.getElementById('legal');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'start'});})()" class="text-white/20 text-[10px] uppercase tracking-[.15em] hover:text-white/40 transition-colors cursor-pointer" data-i18n="ft_terms">Termeni și Condiții</a>
 </div>
 <p class="text-white/15 text-[10px] tracking-[.15em]">© 2026 MedConsult. <span data-i18n="ft_rights">Toate drepturile rezervate.</span> <span class="text-white/10" data-i18n="ft_rights_detail">Reproducerea conținutului fără acordul scris al MedConsult este interzisă.</span></p>
+<button id="adminGear" onclick="openAdminLogin()" aria-label="Admin" class="text-white/10 hover:text-white/30 transition-colors cursor-pointer"><i data-lucide="settings" stroke-width="1.5" class="w-4 h-4"></i></button>
 </div>
 </footer>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="adminLoginModal" class="popup-overlay hide" onclick="if(event.target===this)closeAdminLogin()">
+<div class="bg-white rounded-2xl shadow-2xl shadow-navy-900/15 p-8 max-w-xs w-full mx-4 text-center">
+<div class="w-10 h-10 mx-auto mb-4 rounded-xl bg-navy-50 flex items-center justify-center"><i data-lucide="lock" stroke-width="1.5" class="w-5 h-5 text-navy-900"></i></div>
+<h3 class="font-display text-navy-900 text-lg mb-6">Admin</h3>
+<div id="adminError" class="hidden text-red-500 text-xs mb-3"></div>
+<input id="adminEmail" type="email" placeholder="Email" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm mb-3 focus:outline-none focus:border-teal-400">
+<input id="adminPass" type="password" placeholder="Parolă" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm mb-4 focus:outline-none focus:border-teal-400" onkeydown="if(event.key==='Enter')doAdminLogin()">
+<button onclick="doAdminLogin()" class="w-full py-2.5 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Autentificare</button>
+</div>
+</div>
+
+<!-- ADMIN TOP BAR (shown when logged in) -->
+<div id="adminBar" class="admin-bar" style="display:none">
+<span>Admin Mode — click any highlighted text to edit</span>
+<div class="flex items-center gap-2">
+<button onclick="adminLogout()">Logout</button>
+</div>
+</div>
+
+<!-- ADMIN SAVE TOAST -->
+<div id="adminSaving" class="admin-saving">Saved</div>
 
 <!-- LEGAL DISCLAIMER -->
 <div id="legal" class="hidden bg-navy-900 border-t border-white/5 px-6 lg:px-12 py-12">
@@ -671,6 +708,127 @@ function loadYT(){
     if(helix)helix.style.transform=`translateY(${y*0.12}px)`;
   },{passive:true});
 })();
+
+// ===== FIREBASE ADMIN CMS =====
+const firebaseConfig = {
+  apiKey: "AIzaSyCVlAdDbF8Vslh0EgM-Z0YJstvuPr323b4",
+  authDomain: "medconsult-cms.firebaseapp.com",
+  projectId: "medconsult-cms",
+  storageBucket: "medconsult-cms.firebasestorage.app",
+  messagingSenderId: "435201303451",
+  appId: "1:435201303451:web:3836d1117a80ac0655773e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let isAdmin = false;
+
+function openAdminLogin() {
+  if (isAdmin) return;
+  document.getElementById('adminLoginModal').classList.remove('hide');
+  document.getElementById('adminError').classList.add('hidden');
+  document.getElementById('adminEmail').value = '';
+  document.getElementById('adminPass').value = '';
+  setTimeout(() => document.getElementById('adminEmail').focus(), 200);
+  lucide.createIcons();
+}
+
+function closeAdminLogin() {
+  document.getElementById('adminLoginModal').classList.add('hide');
+}
+
+function doAdminLogin() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  const errEl = document.getElementById('adminError');
+  if (!email || !pass) { errEl.textContent = 'Completați ambele câmpuri.'; errEl.classList.remove('hidden'); return; }
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(() => { closeAdminLogin(); enableAdminMode(); })
+    .catch(() => { errEl.textContent = 'Email sau parolă incorectă.'; errEl.classList.remove('hidden'); });
+}
+
+function adminLogout() {
+  auth.signOut().then(() => { disableAdminMode(); });
+}
+
+function enableAdminMode() {
+  isAdmin = true;
+  document.getElementById('adminBar').style.display = 'flex';
+  document.getElementById('adminGear').style.display = 'none';
+  document.body.style.paddingTop = '36px';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.classList.add('admin-editable');
+    el.setAttribute('contenteditable', 'true');
+    el.addEventListener('blur', handleAdminEdit);
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); el.blur(); } });
+  });
+}
+
+function disableAdminMode() {
+  isAdmin = false;
+  document.getElementById('adminBar').style.display = 'none';
+  document.getElementById('adminGear').style.display = '';
+  document.body.style.paddingTop = '';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.classList.remove('admin-editable');
+    el.removeAttribute('contenteditable');
+  });
+}
+
+function handleAdminEdit(e) {
+  const el = e.target.closest('[data-i18n]');
+  if (!el) return;
+  const key = el.getAttribute('data-i18n');
+  const lang = localStorage.getItem('mc_lang') || 'ro';
+  const value = el.innerHTML;
+  showSaveToast();
+  db.collection('content').doc(lang).set({ [key]: value }, { merge: true })
+    .then(() => {
+      if (T[lang]) T[lang][key] = value;
+    });
+}
+
+function showSaveToast() {
+  const toast = document.getElementById('adminSaving');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1200);
+}
+
+// Load custom content from Firestore on page load
+function loadCustomContent(lang) {
+  db.collection('content').doc(lang).get().then(doc => {
+    if (!doc.exists) return;
+    const data = doc.data();
+    Object.keys(data).forEach(key => {
+      if (T[lang]) T[lang][key] = data[key];
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (data[k]) el.innerHTML = data[k];
+    });
+    lucide.createIcons();
+  }).catch(() => {});
+}
+
+// Override setLang to also load custom content
+const _origSetLang = setLang;
+setLang = function(l) {
+  _origSetLang(l);
+  loadCustomContent(l);
+};
+
+// On page load, if lang already chosen, load custom content
+(function() {
+  const lang = localStorage.getItem('mc_lang');
+  if (lang) setTimeout(() => loadCustomContent(lang), 200);
+})();
+
+// Auto-login if session persists
+auth.onAuthStateChanged(user => {
+  if (user) enableAdminMode();
+});
 </script>
 </body>
 </html>
