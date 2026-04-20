@@ -13,7 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['Inter','sans-serif']},colors:{navy:{'50':'#f0f4fa','100':'#dce4f2','900':'#0B1B3D','800':'#0F2550','700':'#153066'},teal:{'50':'#f0fdfa','100':'#ccfbf1','200':'#99f6e4','300':'#5eead4','400':'#2dd4bf','500':'#14b8a6'}}}}}</script>
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['Inter','sans-serif']},colors:{navy:{'50':'#ede9fe','100':'#ddd6fe','900':'#5B21B6','800':'#6D28D9','700':'#7C3AED'},teal:{'50':'#f0fdfa','100':'#ccfbf1','200':'#99f6e4','300':'#5eead4','400':'#2dd4bf','500':'#14b8a6'}}}}}</script>
 <style>
 *{scroll-behavior:smooth;margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#f8fafc}
@@ -28,15 +28,15 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 [data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.2s}[data-d="3"]{transition-delay:.3s}[data-d="4"]{transition-delay:.4s}[data-d="5"]{transition-delay:.5s}[data-d="6"]{transition-delay:.6s}[data-d="7"]{transition-delay:.7s}
 
 /* Language popup */
-.popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(11,27,61,.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;transition:opacity .4s,visibility .4s}
+.popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(91,33,182,.45);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;transition:opacity .4s,visibility .4s}
 .popup-overlay.hide{opacity:0;visibility:hidden;pointer-events:none}
 
 /* Nav */
 .nav-glass{background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.nav-scrolled{box-shadow:0 1px 20px rgba(11,27,61,.06)}
+.nav-scrolled{box-shadow:0 1px 20px rgba(91,33,182,.08)}
 
 /* Hero gradient */
-.hero-bg{background:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 30%,#f8fafc 60%,#ecfdf5 100%)}
+.hero-bg{background:linear-gradient(135deg,#ede9fe 0%,#f5f3ff 30%,#f8fafc 60%,#e0f2fe 100%)}
 
 /* Floating buttons */
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -45,10 +45,10 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 
 /* Cards */
 .card-hover{transition:all .4s cubic-bezier(.16,1,.3,1)}
-.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(11,27,61,.08)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(91,33,182,.1)}
 
 /* Active lang */
-.lb.active{background:#0B1B3D;color:#fff}
+.lb.active{background:#5B21B6;color:#fff}
 
 /* Cookie bar */
 .cookie-bar{transform:translateY(100%);transition:transform .4s ease}
@@ -58,20 +58,20 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#f1f5f9}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
 
 /* Admin inline editing */
-.admin-editable{outline:2px dashed rgba(20,184,166,.45)!important;outline-offset:2px;cursor:text;transition:outline-color .2s}
-.admin-editable:hover{outline-color:rgba(20,184,166,.8)!important}
-.admin-editable:focus{outline:2px solid #14b8a6!important;background:rgba(20,184,166,.04);outline-offset:2px}
-.admin-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:#0B1B3D;color:#fff;font-size:12px;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif}
+.admin-editable{outline:2px dashed rgba(123,111,255,.45)!important;outline-offset:2px;cursor:text;transition:outline-color .2s}
+.admin-editable:hover{outline-color:rgba(123,111,255,.8)!important}
+.admin-editable:focus{outline:2px solid #7B6FFF!important;background:rgba(123,111,255,.04);outline-offset:2px}
+.admin-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#5B21B6,#8B40F6);color:#fff;font-size:12px;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif}
 .admin-bar button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:5px 14px;border-radius:6px;font-size:11px;cursor:pointer;transition:background .2s}
 .admin-bar button:hover{background:rgba(255,255,255,.22)}
-.admin-saving{position:fixed;bottom:24px;right:24px;z-index:10001;background:#0B1B3D;color:#fff;padding:8px 18px;border-radius:8px;font-size:12px;font-family:'Inter',sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.admin-saving{position:fixed;bottom:24px;right:24px;z-index:10001;background:#5B21B6;color:#fff;padding:8px 18px;border-radius:8px;font-size:12px;font-family:'Inter',sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
 .admin-saving.show{opacity:1}
 
 /* Stacked section cards */
-#about{box-shadow:0 -24px 80px rgba(0,0,0,0.28)}
-#til{box-shadow:0 -20px 60px rgba(0,0,0,0.14)}
-#services{box-shadow:0 -20px 60px rgba(0,0,0,0.10)}
-#contact{box-shadow:0 -20px 60px rgba(0,0,0,0.18)}
+#about{box-shadow:0 -24px 80px rgba(91,33,182,0.2)}
+#til{box-shadow:0 -20px 60px rgba(91,33,182,0.1)}
+#services{box-shadow:0 -20px 60px rgba(91,33,182,0.08)}
+#contact{box-shadow:0 -20px 60px rgba(91,33,182,0.15)}
 
 /* Section scale-on-exit */
 .layer-section{transition:transform .6s cubic-bezier(.16,1,.3,1);transform-origin:top center}
@@ -87,8 +87,8 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <h2 class="font-display text-xl text-navy-900 mb-1">MedConsult</h2>
 <p class="text-slate-400 text-sm mb-8">Selectați limba / Выберите язык</p>
 <div class="space-y-3">
-<button onclick="pickLang('ro')" class="w-full py-3.5 bg-navy-50 hover:bg-navy-900 hover:text-white text-navy-900 rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Română</button>
-<button onclick="pickLang('ru')" class="w-full py-3.5 bg-navy-50 hover:bg-navy-900 hover:text-white text-navy-900 rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Русский</button>
+<button onclick="pickLang('ro')" class="w-full py-3.5 bg-[#f3f0ff] hover:bg-[#7B6FFF] hover:text-white text-[#5B21B6] rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Română</button>
+<button onclick="pickLang('ru')" class="w-full py-3.5 bg-[#f3f0ff] hover:bg-[#7B6FFF] hover:text-white text-[#5B21B6] rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Русский</button>
 </div>
 </div>
 </div>
@@ -98,7 +98,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="bg-white rounded-2xl shadow-2xl shadow-navy-900/20 max-w-2xl w-full mx-4 my-8 max-h-[85vh] flex flex-col">
 <div class="flex items-center justify-between px-8 py-5 border-b border-slate-100 flex-shrink-0">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-sky-600 flex items-center justify-center text-white"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-5 h-5"></i></div>
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-[#4DDCFF] flex items-center justify-center text-white"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-5 h-5"></i></div>
 <span class="font-display text-navy-900 text-xl">MedConsult</span>
 </div>
 <button onclick="closeAbout()" aria-label="Close" class="text-slate-400 hover:text-navy-900 cursor-pointer transition-colors"><i data-lucide="x" stroke-width="1.5" class="w-6 h-6"></i></button>
@@ -112,7 +112,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <p class="text-xs text-slate-400 font-light" data-i18n="cookie_text">Acest site folosește cookie-uri pentru a vă oferi o experiență mai bună. Puteți accepta sau refuza utilizarea acestora.</p>
 <div class="flex gap-2 flex-shrink-0">
 <button onclick="rejectCookies()" class="px-5 py-2 border border-slate-200 text-slate-500 text-xs font-medium rounded-lg hover:bg-slate-50 transition-colors cursor-pointer" data-i18n="cookie_reject">Refuz</button>
-<button onclick="acceptCookies()" class="px-5 py-2 bg-navy-900 text-white text-xs font-medium rounded-lg hover:bg-navy-800 transition-colors cursor-pointer" data-i18n="cookie_btn">Accept</button>
+<button onclick="acceptCookies()" class="px-5 py-2 text-white text-xs font-medium rounded-lg transition-colors cursor-pointer" style="background:linear-gradient(135deg,#7B6FFF,#8B40F6)" data-i18n="cookie_btn">Accept</button>
 </div>
 </div>
 
@@ -127,7 +127,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <a href="viber://chat?number=37362000452" class="fl w-13 h-13 rounded-full bg-[#7360F2] text-white flex items-center justify-center shadow-lg shadow-[#7360F2]/25 hover:scale-110 transition-transform" title="Viber" style="width:52px;height:52px">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.398.002C9.473.028 5.331.344 3.014 2.467 1.294 4.177.518 6.77.36 9.94.2 13.112.16 19.247 5.7 20.776h.004l-.004 2.462s-.04.993.616 1.2c.796.248 1.265-.512 2.024-1.328.418-.45.992-1.11 1.426-1.613 3.937.332 6.964-.428 7.314-.546.81-.27 5.39-.85 6.14-6.93.773-6.266-.373-10.22-2.428-12.008C19.367.95 17.256.208 13.508.038c0 0-.99-.048-2.11-.036zM11.47 1.97c.96-.012 1.828.03 1.828.03 3.248.146 5.097.783 6.216 1.89 1.614 1.424 2.586 4.912 1.924 10.28-.616 4.906-4.233 5.282-4.912 5.508-.287.1-2.928.756-6.37.545 0 0-2.523 3.044-3.31 3.84-.124.127-.268.178-.364.152-.136-.036-.173-.196-.17-.432l.02-4.166c-4.398-1.22-4.14-5.95-4.006-8.878.134-2.728.793-4.966 2.2-6.36C5.746 3.2 8.567 2.015 11.47 1.97zm.498 2.95c-.2 0-.2.3 0 .3 1.34.02 2.467.462 3.37 1.278.9.816 1.404 1.944 1.48 3.323 0 .2.298.186.296-.01-.082-1.498-.636-2.738-1.616-3.626-.978-.888-2.222-1.37-3.637-1.4-.044 0-.072.01-.093.02v.014zm-3.065 1.68c-.282-.014-.574.1-.804.382l-.124.15c-.58.7-.75 1.452-.5 2.24.38 1.194 1.1 2.272 1.89 3.24.426.52.892 1.002 1.4 1.44.242.21.496.404.758.584l.02.014.014.01.008.006h.006l.006.004c1.156.784 2.442 1.29 3.467 1.44.78.16 1.466.02 1.97-.396l.18-.172c.51-.532.6-1.15.235-1.706-.37-.577-1.206-1.14-1.8-1.37-.41-.18-.842-.076-1.14.26l-.376.42c-.265.273-.678.228-.678.228l-.012.006c-2.946-.672-3.656-3.64-3.656-3.64s-.046-.412.228-.678l.42-.376c.334-.298.442-.73.26-1.14-.337-.883-.79-1.354-1.38-1.726-.174-.11-.374-.17-.58-.182l-.012-.002v-.002zm4.632.86c-.2-.018-.214.28-.014.3.7.07 1.29.35 1.76.82.47.468.73 1.074.78 1.776.01.2.298.183.29-.016-.06-.794-.36-1.49-.9-2.024-.54-.534-1.2-.838-1.97-.917l.054.06zm-1.552.06c-.194 0-.2.3 0 .3.94.034 1.634.456 2.1 1.092.348.478.556 1.078.578 1.746.006.198.3.19.294-.008-.024-.734-.254-1.398-.642-1.93-.536-.738-1.336-1.2-2.33-1.2zm1.49 2.094c-.186-.012-.196.286 0 .3.42.02.578.26.594.7.006.2.3.186.294-.014-.024-.632-.346-.952-.876-.986h-.012z"/></svg>
 </a>
-<a href="tel:+37362000452" class="fl w-13 h-13 rounded-full bg-navy-900 text-white flex items-center justify-center shadow-lg shadow-navy-900/25 hover:scale-110 transition-transform" title="Telefon" style="width:52px;height:52px">
+<a href="tel:+37362000452" class="fl w-13 h-13 rounded-full text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform" title="Telefon" style="width:52px;height:52px;background:linear-gradient(135deg,#7B6FFF,#8B40F6);box-shadow:0 10px 25px rgba(139,64,246,.3)">
 <i data-lucide="phone" stroke-width="1.5" class="w-5 h-5"></i>
 </a>
 </div>
@@ -136,7 +136,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <nav id="nav" class="fixed w-full z-40 top-0 nav-glass border-b border-slate-100/60 transition-all duration-300">
 <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
 <a href="#" class="flex items-center gap-3 group">
-<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-sky-600 flex items-center justify-center text-white shadow-md group-hover:shadow-lg transition-shadow"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-5 h-5"></i></div>
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-[#4DDCFF] flex items-center justify-center text-white shadow-md group-hover:shadow-lg transition-shadow"><i data-lucide="heart-pulse" stroke-width="1.5" class="w-5 h-5"></i></div>
 <div><span class="text-navy-900 font-display text-xl tracking-tight block leading-tight">MedConsult</span><span class="text-[9px] tracking-[.25em] text-slate-400 uppercase" data-i18n="nav_tagline">Imunoterapie Oncologică</span></div>
 </a>
 <div class="hidden lg:flex items-center gap-7">
@@ -144,7 +144,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 
 <a href="#til" class="text-[11px] font-semibold uppercase tracking-[.15em] text-slate-400 hover:text-navy-900 transition-colors" data-i18n="nav_til">Terapia TIL</a>
 <a href="#services" class="text-[11px] font-semibold uppercase tracking-[.15em] text-slate-400 hover:text-navy-900 transition-colors" data-i18n="nav_services">Servicii</a>
-<a href="#contact" class="px-5 py-2.5 bg-navy-900 text-white hover:bg-navy-800 text-[11px] font-semibold uppercase tracking-[.15em] rounded-xl shadow-md hover:shadow-lg transition-all" data-i18n="nav_contact">Contact</a>
+<a href="#contact" class="px-5 py-2.5 text-white text-[11px] font-semibold uppercase tracking-[.15em] rounded-xl shadow-md hover:shadow-lg transition-all" style="background:linear-gradient(135deg,#7B6FFF,#8B40F6)" data-i18n="nav_contact">Contact</a>
 <div class="flex gap-0.5 border border-slate-200 rounded-lg p-0.5">
 <button onclick="setLang('ro')" class="lb active px-2 py-1 text-[10px] uppercase tracking-widest rounded-md transition-all font-bold cursor-pointer">RO</button>
 <button onclick="setLang('ru')" class="lb px-2 py-1 text-[10px] uppercase tracking-widest text-slate-400 rounded-md transition-all font-bold cursor-pointer">RU</button>
@@ -166,29 +166,29 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 </nav>
 
 <!-- HERO -->
-<header class="bg-[#0B1B3D] min-h-screen flex items-center pt-20 relative overflow-hidden">
+<header class="min-h-screen flex items-center pt-20 relative overflow-hidden" style="background:linear-gradient(135deg,#5B21B6 0%,#8B40F6 30%,#7B6FFF 60%,#4DDCFF 100%)">
 <div class="absolute inset-0 pointer-events-none">
-<div class="absolute top-20 right-20 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl"></div>
-<div class="absolute bottom-20 left-10 w-80 h-80 bg-sky-400/6 rounded-full blur-3xl"></div>
-<div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-sky-600/5 rounded-full blur-3xl"></div>
+<div class="absolute top-20 right-20 w-96 h-96 bg-[#4DDCFF]/15 rounded-full blur-3xl"></div>
+<div class="absolute bottom-20 left-10 w-80 h-80 bg-[#7B6FFF]/10 rounded-full blur-3xl"></div>
+<div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#8B40F6]/10 rounded-full blur-3xl"></div>
 <!-- Mobile helix background -->
-<canvas id="dnaCanvasBg" class="lg:hidden absolute inset-0 w-full h-full" style="opacity:0.22"></canvas>
+<canvas id="dnaCanvasBg" class="lg:hidden absolute inset-0 w-full h-full" style="opacity:0.35"></canvas>
 </div>
 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-32 relative z-10 w-full">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div id="heroContent">
 <div data-a class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/15 rounded-full mb-8">
 <span class="w-2 h-2 rounded-full bg-emerald-400 shadow shadow-emerald-400/50"></span>
-<span class="text-xs font-medium text-white/60 uppercase tracking-[.2em]" data-i18n="hero_badge">Chișinău, Republica Moldova</span>
+<span class="text-xs font-medium text-white/80 uppercase tracking-[.2em]" data-i18n="hero_badge">Chișinău, Republica Moldova</span>
 </div>
 <h1 data-a data-d="1" class="text-4xl md:text-5xl lg:text-[3.4rem] font-display tracking-tight leading-[1.15] text-white mb-8">
 <span data-i18n="hero_title">MedConsult</span>
 </h1>
-<p data-a data-d="2" class="text-lg md:text-xl text-white/50 font-light leading-relaxed mb-10 max-w-lg" data-i18n="hero_sub">MedConsult este reprezentantul serviciilor medicale în cele mai bune clinici din lume. Diagnostic, tratament, imunoterapie și cele mai noi tehnologii de vaccinare în bolile oncologice.</p>
+<p data-a data-d="2" class="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-10 max-w-lg" data-i18n="hero_sub">MedConsult este reprezentantul serviciilor medicale în cele mai bune clinici din lume. Diagnostic, tratament, imunoterapie și cele mai noi tehnologii de vaccinare în bolile oncologice.</p>
 <div data-a data-d="3" class="flex flex-col sm:flex-row gap-4">
-<a href="javascript:void(0)" onclick="openAbout()" class="px-8 py-4 bg-sky-500 text-white text-sm font-medium uppercase tracking-[.15em] rounded-xl shadow-lg shadow-sky-500/25 hover:shadow-xl hover:bg-sky-400 transition-all text-center cursor-pointer" data-i18n="hero_cta1">Despre Noi</a>
-<a href="#contact" class="px-8 py-4 border border-white/25 text-white/70 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta2">Contactează-ne</a>
-<a href="#til-highlight" class="px-8 py-4 border border-white/25 text-white/70 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta3">Terapia TIL</a>
+<a href="javascript:void(0)" onclick="openAbout()" class="px-8 py-4 text-white text-sm font-medium uppercase tracking-[.15em] rounded-xl shadow-lg hover:shadow-xl transition-all text-center cursor-pointer" style="background:linear-gradient(135deg,#4DDCFF,#7B6FFF);box-shadow:0 10px 30px rgba(77,220,255,.3)" data-i18n="hero_cta1">Despre Noi</a>
+<a href="#contact" class="px-8 py-4 border border-white/40 text-white/90 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta2">Contactează-ne</a>
+<a href="#til-highlight" class="px-8 py-4 border border-white/40 text-white/90 text-sm font-light uppercase tracking-[.15em] rounded-xl hover:bg-white/10 hover:border-white/40 transition-all text-center" data-i18n="hero_cta3">Terapia TIL</a>
 </div>
 </div>
 <div id="heroHelix" class="hidden lg:block relative" style="height:620px">
@@ -209,7 +209,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
 <div>
 <div data-a>
-<span class="text-sky-500 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="about_label">Despre MedConsult</span>
+<span class="text-[#7B6FFF] text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="about_label">Despre MedConsult</span>
 <h2 class="text-3xl md:text-4xl font-display text-navy-900 tracking-tight leading-tight mb-6" data-i18n="about_title">Cum Lucrăm</h2>
 </div>
 <div data-a data-d="1" class="text-slate-500 font-light text-[17px] leading-relaxed" data-i18n="about_html"></div>
@@ -220,7 +220,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 
 <!-- TIL THERAPY - COMPREHENSIVE -->
 <section id="til" class="layer-section py-24 md:py-32 bg-white relative z-20 rounded-t-3xl -mt-6 overflow-hidden">
-<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-50/40 rounded-full blur-3xl -z-10"></div>
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7B6FFF]/5 rounded-full blur-3xl -z-10"></div>
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
 <!-- Highlight line -->
@@ -228,7 +228,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 
 <!-- Intro -->
 <div data-a class="text-center max-w-3xl mx-auto mb-20">
-<span class="text-sky-500 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="til_label">Terapia TIL — Informații Medicale Complete</span>
+<span class="text-[#7B6FFF] text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="til_label">Terapia TIL — Informații Medicale Complete</span>
 <h2 class="text-3xl md:text-4xl font-display text-navy-900 tracking-tight mb-6" data-i18n="til_title">Ce este Imunoterapia TIL?</h2>
 <p class="text-lg text-slate-400 font-light leading-relaxed" data-i18n="til_intro">Tumor Infiltrating Lymphocyte (TIL) therapy este o metodă inovatoare de imunoterapie adoptivă care utilizează celulele imunitare ale pacientului — limfocitele — pentru a lupta împotriva tumorilor maligne. Această abordare terapeutică a demonstrat o eficacitate superioară chimioterapiei clasice și este mult mai bine tolerată de pacienți.</p>
 </div>
@@ -238,7 +238,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div data-a class="space-y-6">
 <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100">
 <div class="flex items-center gap-3 mb-5">
-<div class="w-11 h-11 rounded-xl bg-sky-50 flex items-center justify-center"><i data-lucide="dna" stroke-width="1.5" class="w-6 h-6 text-sky-500"></i></div>
+<div class="w-11 h-11 rounded-xl bg-[#ede9fe] flex items-center justify-center"><i data-lucide="dna" stroke-width="1.5" class="w-6 h-6 text-[#7B6FFF]"></i></div>
 <h3 class="font-display text-xl text-navy-900" data-i18n="til_b1_title">Limfocitele Infiltrante ale Tumorii</h3>
 </div>
 <div class="text-slate-500 font-light leading-relaxed space-y-4 text-[15px]" data-i18n="til_b1_text"><p>Limfocitele infiltrante ale tumorii (TIL) sunt celule imunitare speciale, capabile să pătrundă în interiorul neoplasmului malign. Aceste limfocite au o caracteristică unică: ele au deja „experiență" în lupta cu tumora specifică a pacientului, deoarece au fost în contact direct cu celulele canceroase.</p><p>Sistemul imunitar uman produce în mod natural aceste limfocite care încearcă să atace tumora. Problema este că tumora dezvoltă mecanisme de apărare care „dezactivează" aceste celule imunitare. TIL-terapia rezolvă această problemă prin extragerea limfocitelor, procesarea lor în laborator pentru a le face rezistente la semnalele tumorale inhibitoare, și reintroducerea lor în organism în cantități masive.</p></div>
@@ -247,7 +247,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div data-a="r" data-d="1" class="space-y-6">
 <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100">
 <div class="flex items-center gap-3 mb-5">
-<div class="w-11 h-11 rounded-xl bg-sky-50 flex items-center justify-center"><i data-lucide="microscope" stroke-width="1.5" class="w-6 h-6 text-sky-500"></i></div>
+<div class="w-11 h-11 rounded-xl bg-[#ede9fe] flex items-center justify-center"><i data-lucide="microscope" stroke-width="1.5" class="w-6 h-6 text-[#7B6FFF]"></i></div>
 <h3 class="font-display text-xl text-navy-900" data-i18n="til_b2_title">De ce este TIL diferită?</h3>
 </div>
 <div class="text-slate-500 font-light leading-relaxed space-y-4 text-[15px]" data-i18n="til_b2_text"><p>Spre deosebire de chimioterapia clasică, care atacă toate celulele cu diviziune rapidă (inclusiv cele sănătoase), TIL-terapia este extrem de specifică: limfocitele sunt „antrenate" să recunoască și să distrugă doar celulele canceroase.</p><p>Aceasta înseamnă mai puține efecte secundare, o recuperare mai rapidă și, cel mai important, capacitatea de a ataca metastazele din locuri unde chirurgia nu poate ajunge. Limfocitele sunt celule vii care circulă prin sânge și pot detecta celule canceroase în orice parte a corpului.</p></div>
@@ -286,7 +286,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 </div>
 
 <!-- Block 4: Obtainment challenges -->
-<div data-a class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-3xl p-10 md:p-14 mb-20">
+<div data-a class="rounded-3xl p-10 md:p-14 mb-20" style="background:linear-gradient(135deg,#5B21B6 0%,#8B40F6 40%,#7B6FFF 70%,#4DDCFF 100%)">
 <div class="max-w-3xl">
 <h3 class="font-display text-2xl md:text-3xl text-white tracking-tight mb-6" data-i18n="til_tech_title">Provocările Tehnologice ale TIL-Terapiei</h3>
 <div class="text-white/60 font-light leading-relaxed space-y-5 text-[15px]" data-i18n="til_tech_text">
@@ -304,7 +304,7 @@ body{font-family:'Inter',sans-serif;color:#475569;overflow-x:hidden;background:#
 <div class="aspect-video relative">
 <img src="https://img.youtube.com/vi/sDB4GLBgurA/maxresdefault.jpg" alt="TIL Therapy Video" class="w-full h-full object-cover">
 <!-- Dark overlay -->
-<div class="absolute inset-0 bg-navy-900/50 group-hover:bg-navy-900/40 transition-colors duration-300"></div>
+<div class="absolute inset-0 bg-[#5B21B6]/50 group-hover:bg-[#5B21B6]/40 transition-colors duration-300"></div>
 <!-- Play button -->
 <div class="absolute inset-0 flex items-center justify-center">
 <div class="w-20 h-20 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/25 transition-all duration-300 shadow-2xl">
@@ -333,53 +333,53 @@ YouTube
 <section id="services" class="layer-section py-24 md:py-32 bg-gradient-to-b from-slate-50/80 to-white relative z-30 rounded-t-3xl -mt-6">
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
 <div data-a class="text-center max-w-2xl mx-auto mb-16">
-<span class="text-sky-500 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="svc_label">Servicii</span>
+<span class="text-[#7B6FFF] text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="svc_label">Servicii</span>
 <h2 class="text-3xl md:text-4xl font-display text-navy-900 tracking-tight" data-i18n="svc_title">Ce Oferim</h2>
 </div>
 <div class="grid md:grid-cols-3 gap-8">
 <div data-a data-d="1" class="bg-white rounded-2xl p-10 border border-slate-100 card-hover group">
-<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-sky-50 text-slate-300 group-hover:text-sky-500 flex items-center justify-center transition-colors"><i data-lucide="stethoscope" stroke-width="1.5" class="w-7 h-7"></i></div>
+<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-[#f3f0ff] text-slate-300 group-hover:text-[#8B40F6] flex items-center justify-center transition-colors"><i data-lucide="stethoscope" stroke-width="1.5" class="w-7 h-7"></i></div>
 <h3 class="text-xl font-display text-navy-900 mb-3" data-i18n="sv1_title">Consultanță Oncologică</h3>
 <p class="text-slate-400 font-light leading-relaxed mb-6 text-[15px]" data-i18n="sv1_desc">Evaluare completă a dosarului medical. Consiliul nostru de specialiști analizează cazul, studiază istoricul medical, rezultatele diagnosticelor și tratamentele anterioare, apoi recomandă cel mai eficient plan de tratament personalizat.</p>
-<a href="#contact" class="inline-flex items-center gap-2 text-sky-500 hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
+<a href="#contact" class="inline-flex items-center gap-2 text-[#7B6FFF] hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
 </div>
 <div data-a data-d="2" class="bg-white rounded-2xl p-10 border border-slate-100 card-hover group">
-<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-sky-50 text-slate-300 group-hover:text-sky-500 flex items-center justify-center transition-colors"><i data-lucide="syringe" stroke-width="1.5" class="w-7 h-7"></i></div>
+<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-[#f3f0ff] text-slate-300 group-hover:text-[#8B40F6] flex items-center justify-center transition-colors"><i data-lucide="syringe" stroke-width="1.5" class="w-7 h-7"></i></div>
 <h3 class="text-xl font-display text-navy-900 mb-3" data-i18n="sv2_title">Imunoterapie TIL</h3>
 <p class="text-slate-400 font-light leading-relaxed mb-6 text-[15px]" data-i18n="sv2_desc">Coordonarea întregului proces de imunoterapie cu limfocite infiltrante: de la evaluarea eligibilității, pregătirea dosarului, până la organizarea tratamentului la clinicile partenere europene specializate.</p>
-<a href="#contact" class="inline-flex items-center gap-2 text-sky-500 hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
+<a href="#contact" class="inline-flex items-center gap-2 text-[#7B6FFF] hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
 </div>
 <div data-a data-d="3" class="bg-white rounded-2xl p-10 border border-slate-100 card-hover group">
-<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-sky-50 text-slate-300 group-hover:text-sky-500 flex items-center justify-center transition-colors"><i data-lucide="building-2" stroke-width="1.5" class="w-7 h-7"></i></div>
+<div class="mb-6 w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-[#f3f0ff] text-slate-300 group-hover:text-[#8B40F6] flex items-center justify-center transition-colors"><i data-lucide="building-2" stroke-width="1.5" class="w-7 h-7"></i></div>
 <h3 class="text-xl font-display text-navy-900 mb-3" data-i18n="sv3_title">Asistență Completă în Chișinău</h3>
 <p class="text-slate-400 font-light leading-relaxed mb-6 text-[15px]" data-i18n="sv3_desc">Organizăm întregul parcurs al pacientului direct din Chișinău: consultație inițială, evaluare medicală, coordonare tratament, traduceri, documentație și monitorizare post-tratament. Pentru cazuri speciale, asigurăm și legătura cu clinici partenere din Europa.</p>
-<a href="#contact" class="inline-flex items-center gap-2 text-sky-500 hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
+<a href="#contact" class="inline-flex items-center gap-2 text-[#7B6FFF] hover:text-navy-900 text-sm font-medium uppercase tracking-wider transition-colors" data-i18n="sv_cta">Solicită informații <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
 </div>
 </div>
 </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="layer-section py-24 md:py-32 bg-navy-900 relative z-40 rounded-t-3xl -mt-6 overflow-hidden">
-<div class="absolute inset-0 pointer-events-none"><div class="absolute top-0 right-0 w-[500px] h-[500px] bg-navy-800/60 rounded-full blur-3xl"></div><div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-sky-500/5 rounded-full blur-3xl"></div></div>
+<section id="contact" class="layer-section py-24 md:py-32 relative z-40 rounded-t-3xl -mt-6 overflow-hidden" style="background:linear-gradient(135deg,#4DDCFF 0%,#7B6FFF 35%,#8B40F6 65%,#5B21B6 100%)">
+<div class="absolute inset-0 pointer-events-none"><div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8B40F6]/15 rounded-full blur-3xl"></div><div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#4DDCFF]/8 rounded-full blur-3xl"></div></div>
 <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
 <div class="grid lg:grid-cols-2 gap-16">
 <div data-a>
-<span class="text-sky-400 text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="ct_label">Contact</span>
+<span class="text-[#4DDCFF] text-xs font-semibold uppercase tracking-[.25em] block mb-4" data-i18n="ct_label">Contact</span>
 <h2 class="text-3xl md:text-4xl font-display text-white tracking-tight mb-6" data-i18n="ct_title">Contactați-ne</h2>
-<p class="text-white/40 text-lg font-light mb-12 max-w-md leading-relaxed" data-i18n="ct_sub">Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română și rusă.</p>
+<p class="text-white/80 text-lg font-light mb-12 max-w-md leading-relaxed" data-i18n="ct_sub">Faceți primul pas spre un tratament modern. Scrieți-ne sau sunați-ne pentru o consultație — răspundem în română și rusă.</p>
 <ul class="space-y-6">
-<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" stroke-width="1.5" class="text-sky-400 w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_loc_label">Locație</span><span class="text-white/40 font-light text-sm">Bd. Ștefan cel Mare, Chișinău, Republica Moldova</span></div></li>
-<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" stroke-width="1.5" class="text-sky-400 w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_phone_label">Telefon / WhatsApp / Viber</span><a href="tel:+37362000452" class="text-white/40 font-light text-sm hover:text-sky-300 transition-colors">+373 62-000-452</a></div></li>
-<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="send" stroke-width="1.5" class="text-sky-400 w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1">Telegram</span><a href="https://t.me/med_cons" class="text-white/40 font-light text-sm hover:text-sky-300 transition-colors">@med_cons</a></div></li>
+<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" stroke-width="1.5" class="text-[#4DDCFF] w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_loc_label">Locație</span><span class="text-white/70 font-light text-sm">Bd. Ștefan cel Mare, Chișinău, Republica Moldova</span></div></li>
+<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" stroke-width="1.5" class="text-[#4DDCFF] w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1" data-i18n="ct_phone_label">Telefon / WhatsApp / Viber</span><a href="tel:+37362000452" class="text-white/70 font-light text-sm hover:text-[#4DDCFF] transition-colors">+373 62-000-452</a></div></li>
+<li class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0"><i data-lucide="send" stroke-width="1.5" class="text-[#4DDCFF] w-5 h-5"></i></div><div><span class="block text-white/80 text-xs font-semibold uppercase tracking-[.15em] mb-1">Telegram</span><a href="https://t.me/med_cons" class="text-white/70 font-light text-sm hover:text-[#4DDCFF] transition-colors">@med_cons</a></div></li>
 </ul>
 </div>
 <div data-a="r">
 <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-10 text-center">
-<div class="w-14 h-14 rounded-2xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mx-auto mb-6"><i data-lucide="mail" stroke-width="1.5" class="w-7 h-7 text-sky-300"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-[#7B6FFF]/15 border border-[#7B6FFF]/25 flex items-center justify-center mx-auto mb-6"><i data-lucide="mail" stroke-width="1.5" class="w-7 h-7 text-[#4DDCFF]"></i></div>
 <h3 class="text-2xl font-display text-white mb-3" data-i18n="ct_form_title">Solicită o Consultație</h3>
-<p class="text-white/40 font-light text-sm mb-8 leading-relaxed" data-i18n="ct_form_sub">Trimiteți-ne un email și vă vom contacta în cel mai scurt timp.</p>
-<a href="mailto:[email@medconsult.md]?subject=Solicitare%20Consultație" class="inline-flex items-center justify-center gap-2 w-full py-4 bg-sky-500 text-white text-sm font-semibold uppercase tracking-[.15em] rounded-xl hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/20" data-i18n="f_submit">Solicită Consultație <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
+<p class="text-white/70 font-light text-sm mb-8 leading-relaxed" data-i18n="ct_form_sub">Trimiteți-ne un email și vă vom contacta în cel mai scurt timp.</p>
+<a href="mailto:[email@medconsult.md]?subject=Solicitare%20Consultație" class="inline-flex items-center justify-center gap-2 w-full py-4 text-white text-sm font-semibold uppercase tracking-[.15em] rounded-xl transition-all shadow-lg shadow-[#7B6FFF]/20" style="background:linear-gradient(135deg,#4DDCFF,#7B6FFF,#8B40F6)" data-i18n="f_submit">Solicită Consultație <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i></a>
 </div>
 </div>
 </div>
@@ -387,7 +387,7 @@ YouTube
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-navy-900 border-t border-white/5 px-6 lg:px-12 relative z-50">
+<footer class="border-t border-white/5 px-6 lg:px-12 relative z-50" style="background:#5B21B6">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 py-6">
 <div class="flex items-center gap-3">
 <span class="text-white font-display text-lg tracking-tight">MedConsult</span>
@@ -411,7 +411,7 @@ YouTube
 <div id="adminError" class="hidden text-red-500 text-xs mb-3"></div>
 <input id="adminEmail" type="email" placeholder="Email" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm mb-3 focus:outline-none focus:border-teal-400">
 <input id="adminPass" type="password" placeholder="Parolă" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm mb-4 focus:outline-none focus:border-teal-400" onkeydown="if(event.key==='Enter')doAdminLogin()">
-<button onclick="doAdminLogin()" class="w-full py-2.5 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer">Autentificare</button>
+<button onclick="doAdminLogin()" class="w-full py-2.5 text-white rounded-xl text-sm font-medium tracking-wide transition-all cursor-pointer" style="background:linear-gradient(135deg,#7B6FFF,#8B40F6)">Autentificare</button>
 </div>
 </div>
 
@@ -427,7 +427,7 @@ YouTube
 <div id="adminSaving" class="admin-saving">Saved</div>
 
 <!-- LEGAL DISCLAIMER -->
-<div id="legal" class="hidden bg-navy-900 border-t border-white/5 px-6 lg:px-12 py-12">
+<div id="legal" class="hidden border-t border-white/5 px-6 lg:px-12 py-12" style="background:#5B21B6">
 <div class="max-w-4xl mx-auto text-white/25 text-xs font-light leading-relaxed space-y-4">
 <h4 class="text-white/40 text-xs font-semibold uppercase tracking-[.2em] mb-4" data-i18n="legal_title">Informații Legale</h4>
 <p data-i18n="legal_p1">Informațiile prezentate pe acest site au caracter informativ general și nu constituie consiliere medicală. Niciun conținut de pe acest site nu poate înlocui consultația medicală profesională, diagnosticul sau tratamentul. Consultați întotdeauna medicul dumneavoastră sau un alt profesionist calificat în domeniul sănătății pentru orice întrebare legată de o afecțiune medicală.</p>
@@ -594,10 +594,10 @@ lucide.createIcons();
     const dp1=yy=>Math.cos(tAt(yy));           // blue depth: +1=front -1=back
     const dp2=yy=>-Math.cos(tAt(yy));          // purple depth
     // --- Layer 1: dim full strands (back layer) ---
-    ctx.save();ctx.lineWidth=1.8;ctx.strokeStyle='rgba(56,189,248,0.2)';
+    ctx.save();ctx.lineWidth=2.5;ctx.strokeStyle='rgba(77,220,255,0.35)';
     ctx.beginPath();for(let y=0;y<=H;y+=step)y===0?ctx.moveTo(sx1(y),y):ctx.lineTo(sx1(y),y);
     ctx.stroke();ctx.restore();
-    ctx.save();ctx.lineWidth=1.8;ctx.strokeStyle='rgba(167,139,250,0.2)';
+    ctx.save();ctx.lineWidth=2.5;ctx.strokeStyle='rgba(139,64,246,0.35)';
     ctx.beginPath();for(let y=0;y<=H;y+=step)y===0?ctx.moveTo(sx2(y),y):ctx.lineTo(sx2(y),y);
     ctx.stroke();ctx.restore();
     // --- Layer 2: base pairs + nodes ---
@@ -605,41 +605,36 @@ lucide.createIcons();
       const sinT=Math.sin(tAt(y)),vis=Math.abs(sinT);
       if(vis<0.05)continue;
       const xx1=cx+sinT*amp,xx2=cx-sinT*amp;
-      // A-T pairs = blue, G-C pairs = purple, alternating by absolute index
       const isAT=Math.round((y+offset)/pairSp)%2===0;
-      const [pr,pg,pb]=isAT?[56,189,248]:[167,139,250];
-      ctx.strokeStyle=`rgba(${pr},${pg},${pb},${(vis*0.3).toFixed(2)})`;
-      ctx.lineWidth=0.8+vis*1.5;
+      const [pr,pg,pb]=isAT?[77,220,255]:[139,64,246];
+      ctx.strokeStyle=`rgba(${pr},${pg},${pb},${(vis*0.45).toFixed(2)})`;
+      ctx.lineWidth=1+vis*2;
       ctx.beginPath();ctx.moveTo(xx1,y);ctx.lineTo(xx2,y);ctx.stroke();
-      // Node — blue strand
       const d1=dp1(y),d2=dp2(y);
       ctx.save();
-      if(!bg&&d1>0){ctx.shadowColor='rgba(56,189,248,0.85)';ctx.shadowBlur=10;}
-      ctx.fillStyle=`rgba(56,189,248,${(0.22+(d1+1)/2*0.62).toFixed(2)})`;
-      ctx.beginPath();ctx.arc(xx1,y,1.6+(d1+1)*0.9,0,Math.PI*2);ctx.fill();
+      if(!bg&&d1>0){ctx.shadowColor='rgba(77,220,255,1)';ctx.shadowBlur=14;}
+      ctx.fillStyle=`rgba(77,220,255,${(0.35+(d1+1)/2*0.65).toFixed(2)})`;
+      ctx.beginPath();ctx.arc(xx1,y,2+(d1+1)*1.2,0,Math.PI*2);ctx.fill();
       ctx.restore();
-      // Node — purple strand
       ctx.save();
-      if(!bg&&d2>0){ctx.shadowColor='rgba(167,139,250,0.85)';ctx.shadowBlur=10;}
-      ctx.fillStyle=`rgba(167,139,250,${(0.22+(d2+1)/2*0.62).toFixed(2)})`;
-      ctx.beginPath();ctx.arc(xx2,y,1.6+(d2+1)*0.9,0,Math.PI*2);ctx.fill();
+      if(!bg&&d2>0){ctx.shadowColor='rgba(139,64,246,1)';ctx.shadowBlur=14;}
+      ctx.fillStyle=`rgba(139,64,246,${(0.35+(d2+1)/2*0.65).toFixed(2)})`;
+      ctx.beginPath();ctx.arc(xx2,y,2+(d2+1)*1.2,0,Math.PI*2);ctx.fill();
       ctx.restore();
     }
     // --- Layer 3: front-facing glowing strands ---
-    // Blue front
     ctx.save();
-    ctx.shadowColor='rgba(56,189,248,0.65)';ctx.shadowBlur=bg?5:16;
-    ctx.lineWidth=bg?2:3;ctx.strokeStyle='rgba(56,189,248,0.9)';
+    ctx.shadowColor='rgba(77,220,255,0.9)';ctx.shadowBlur=bg?8:22;
+    ctx.lineWidth=bg?2.5:3.5;ctx.strokeStyle='rgba(77,220,255,1)';
     ctx.beginPath();let wb1=true;
     for(let y=0;y<=H;y+=step){
       const front=dp1(y)>=0,x=sx1(y);
       if(front){wb1?ctx.moveTo(x,y):ctx.lineTo(x,y);wb1=false;}else wb1=true;
     }
     ctx.stroke();ctx.restore();
-    // Purple front
     ctx.save();
-    ctx.shadowColor='rgba(167,139,250,0.7)';ctx.shadowBlur=bg?5:16;
-    ctx.lineWidth=bg?2:3;ctx.strokeStyle='rgba(167,139,250,0.9)';
+    ctx.shadowColor='rgba(139,64,246,0.9)';ctx.shadowBlur=bg?8:22;
+    ctx.lineWidth=bg?2.5:3.5;ctx.strokeStyle='rgba(139,64,246,1)';
     ctx.beginPath();let wb2=true;
     for(let y=0;y<=H;y+=step){
       const front=dp2(y)>=0,x=sx2(y);
